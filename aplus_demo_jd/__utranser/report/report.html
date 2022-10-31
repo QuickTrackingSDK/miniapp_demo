@@ -1,0 +1,63 @@
+<!--
+ * @Author: hexujie
+ * @Date: 2021-01-19 14:27:07
+ * @LastEditTime: 2021-06-08 16:49:56
+ * @LastEditors: hexujie
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTranser转换报告</title>
+  <link href="./style.css" rel="stylesheet"></link>
+  <script src="./data.js"></script>
+</head>
+
+<body>
+  <h2>转换报告</h2>
+  <div class="info-wrapper">
+    <div class="info-item">
+      <p class="info-title">项目名称</p>
+      <p class="info-content project-name"></p>
+    </div>
+    <div class="info-item">
+      <p class="info-title">转换类型</p>
+      <p class="info-content project-trans-type"></p>
+    </div>
+    <div class="info-item">
+      <p class="info-title">转换方向</p>
+      <p class="info-content project-trans-way"></p>
+    </div>
+    <div class="info-item">
+      <p class="info-title">项目路径（转换后）</p>
+      <p class="info-content project-path"></p>
+    </div>
+    <div class="info-item">
+      <p class="info-title">支持程度</p>
+      <p class="info-content supported-level"></p>
+    </div>
+    <div class="info-item">
+      <p class="info-title">其他能力</p>
+      <p class="info-content"></p>
+    </div>
+  </div>
+
+  <h2>详细内容</h2>
+  <div class="detail-wrapper">
+    <div class="tab-bar-wrapper">
+    </div>
+    <div class="table-wrapper">
+      <div class="u-table-header"></div>
+      <div class="u-table-body"></div>
+    </div>
+  </div>
+</body>
+<script src="./generateContent.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+  });
+</script>
+
+</html>

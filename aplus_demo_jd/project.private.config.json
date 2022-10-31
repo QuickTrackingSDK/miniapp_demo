@@ -1,0 +1,64 @@
+{
+	"setting": { "compileHotReLoad": true },
+	"condition": {
+		"miniprogram": {
+			"list": [
+				{
+					"name": "db guide",
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"name": "pages/getOpenId/index",
+					"pathName": "pages/getOpenId/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "pages/deployService/index",
+					"pathName": "pages/deployService/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "pages/selectRecord/index",
+					"pathName": "pages/selectRecord/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "pages/sumRecordResult/index",
+					"pathName": "pages/sumRecordResult/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "pages/updateRecord/index",
+					"pathName": "pages/updateRecord/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "pages/updateRecordResult/index",
+					"pathName": "pages/updateRecordResult/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "pages/updateRecordSuccess/index",
+					"pathName": "pages/updateRecordSuccess/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "pages/index/index",
+					"query": "miniappDebugId=log_53772101248884_6e10f6c206334380b07d5f7ad3398e72_log20211222044644",
+					"scene": null
+				}
+			]
+		}
+	},
+	"projectname": "aplus_demo_wx",
+	"description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+}
