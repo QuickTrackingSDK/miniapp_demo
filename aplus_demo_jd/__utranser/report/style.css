@@ -1,0 +1,137 @@
+html, p, body, span, i {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: sans-serif;
+}
+table {
+  width: 100%;
+  border: 1px solid #f0f0f0;
+  text-align: left;
+  border-radius: 2px 2px 0 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  line-height: 1.5715;
+}
+
+th {
+  font-weight: 500;
+  text-align: left;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px;
+  text-align: center;
+}
+
+thead {
+  color: red;
+}
+
+td {
+  border: 1px solid#f0f0f0;
+  font-weight: 200;
+  text-align: left;
+  background: #fafafa;
+  padding: 16px;
+}
+
+body {
+  width: 800px;
+  margin: 0 auto;
+}
+.info-wrapper {
+  margin: 20px 50px;
+  border: 1px solid lightgray;
+}
+.info-item {
+  display: flex;
+  padding: 10px 50px;
+}
+.info-item:not(:last-child) {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+}
+.info-content {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.info-title {
+  width: 50%;
+}
+.tab-bar-wrapper {
+  display: flex;
+  padding: 20px 50px;
+}
+.tab-bar-item {
+  padding: 10px 40px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.tab-bar-item.active {
+  border-bottom: 3px solid lightsalmon;
+}
+.detail-btn {
+  color:lightskyblue;
+  cursor: pointer;
+}
+.u-table-header table {
+  table-layout: fixed;
+}
+.u-table-body table {
+  table-layout: fixed;
+}
+.u-table-body {
+  overflow-y: scroll;
+  max-height: 340px;
+}
+
+.dialog-mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.dialog-panel {
+  width: 520px;
+  box-sizing: border-box;
+  color: rgba(0,0,0,.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  pointer-events: none;
+  position: relative;
+  top: 100px;
+  max-width: calc(100vw - 32px);
+  margin: 0 auto;
+  padding: 0 0 24px;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+  pointer-events: auto;
+}
+.dialog-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.dialog-title {
+  font-weight: 500;
+  font-size: 16px;
+}
+.dialog-close-icon {
+  display: inline-block;
+  cursor: pointer;
+}
+.dialog-body {
+  padding: 0 20px 20px;
+}
+.table-wrapper {
+  margin-bottom: 20px;
+}
