@@ -10,5 +10,6 @@
     <view class="pv-btn">
         <button class="btn-auto" type="primary" bindtap="sendPv">手动pv事件 页面编码"manpv_page_custom"</button>
         <view>手动采集的页面浏览事件中，页面编码为自定义值，使用page_name字段设置。</view>
+        <button class="btn-auto" type="primary" bindtap="navigateToPV1">下个页面</button>
     </view>
 </view>

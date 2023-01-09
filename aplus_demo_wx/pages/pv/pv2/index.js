@@ -16,10 +16,5 @@ Page({
       action: 'aplus.sendPV',
       arguments: [{is_auto: false}, {a: 1, b: 2, c: 3, page_name: 'manpv_page_custom', d: undefined, e: null, f: ''}]
     })
-},
-navigateToPV1(e) {
-  wx.navigateTo({
-    url: '/pages/pv/pv1/index'
-  });
-},
+  }
 });

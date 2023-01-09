@@ -7,7 +7,9 @@
     "pages/custom/index",
     "pages/exposure/index",
     "pages/setting/index",
-    "pages/vt/vtdemo1"
+    "pages/vt/vtdemo1",
+    "pages/pv/pv1/index",
+    "pages/pv/pv2/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

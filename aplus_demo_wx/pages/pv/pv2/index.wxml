@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="event-pv">
+    <view class="pv-title">页面浏览事件（PV）</view>
+    <view class="pv-btn">
+        <button class="btn-auto" type="primary" bindtap="sendPv">发送手动pv事件</button>
+    </view>
+</view>
