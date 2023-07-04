@@ -1,5 +1,6 @@
 // #ifdef MP
-import aplus_mini from './aplus_mini_cloud_um.js';
+// import aplus_mini from './aplus_mini_cloud_um.js'; //1.x 版本 sdk
+import { initQTSDK } from './qt_mini.umd.js';
 let trackerInfo = {};
 try {
   trackerInfo = uni.getStorageSync('__trackerInfo');
@@ -15,7 +16,7 @@ const aplusConfig = {
   metaInfo: {
    'appKey': trackerInfo.appKey,
    'appInfoId': trackerInfo.appInfoId,
-   'aplus-rhost-v': trackerInfo.aplusRhostV,
+   'trackDomain': trackerInfo.aplusRhostV || 'log-api.aplus.emas-poc.com',
    'aplus-vt-cfg-url': trackerInfo.aplusVtCfgUrl, // 已发布的配置地址
    'aplus-api-host': trackerInfo.aplusApiHost, // 采集管理系统域名，用于可视化埋点验证
 
@@ -75,7 +76,8 @@ const aplusConfig = {
   }
 };
 
-const aplus = aplus_mini(aplusConfig);
+// const aplus = aplus_mini(aplusConfig);
+const aplus = initQTSDK(aplusConfig).ctx.aplus;
 
 aplus.install = function(Vue) {
 	Vue.prototype.$aplus = aplus;

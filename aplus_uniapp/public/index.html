@@ -17,9 +17,9 @@
 					j = d.createElement(s);
 				j.async = true;
 				j.id = 'beacon-aplus';
-				j.src = 'https://d.alicdn.com/alilog/mlog/aplus/' + i + '.js';
+				j.src = 'https://o.alicdn.com/QTSDK/quicktracking-sdk/qt_web.umd.js';
 				f.parentNode.insertBefore(j, f);
-			})(window, document, 'script', 'aplus_queue', '203520406');
+			})(window, document, 'script', 'aplus_queue');
 
 			//集成应用的appKey
 			aplus_queue.push({
@@ -30,8 +30,7 @@
 			//通常私有云日志服务端域名类似于：quickaplus-web-api.xxx.com.cn, 具体域名要找交付同学要
 			aplus_queue.push({
 				action: 'aplus.setMetaInfo',
-				arguments: ['aplus-rhost-v', 'log-api.aplus.emas-poc.com']
-				// arguments: ['aplus-rhost-v', 'log-api-daily.aplus.emas-poc.com'],
+				arguments: ['aplus-rhost-v', '收数域名']
 			});
 			//开启调试模式
 			aplus_queue.push({

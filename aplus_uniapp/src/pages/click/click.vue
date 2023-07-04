@@ -35,8 +35,8 @@ export default {
 		},
         // #ifdef MP
 		onAplusClk: function(e) {
-			const { aplus_queue } = this.$aplus;
-			aplus_queue.push({
+			// const { aplus_queue } = this.$aplus;
+			wx.aplus_queue.push({
 				action: 'aplus.aplus_pubsub.publish',
 				arguments: ['onAplusClk', {
 				  status: 'ready',

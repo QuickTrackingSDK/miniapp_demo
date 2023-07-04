@@ -13,8 +13,8 @@ export default {
 		// #endif 
 		
 		// #ifdef MP
-		const {aplus_queue } = aplusVar;
-		aplus_queue.push({
+		// const {aplus_queue } = aplusVar;
+		wx.aplus_queue.push({
 			action: 'aplus.sendPV',
 			arguments: [
 				{is_auto: false},
@@ -37,9 +37,9 @@ export default {
 	
 	sendEvent: function(eventId, params, eventType = 'CLK', method = 'POST') {
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
+		// const { aplus_queue } = aplusVar;
 		console.log('yz-----aplus_queue', eventId, params, eventType);
-		aplus_queue.push({
+		wx.aplus_queue.push({
 			'action': 'aplus.record',
 			'arguments': [eventId, eventType, params, method]
 		})
@@ -91,13 +91,13 @@ export default {
 		// #endif
 		
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
+		// const { aplus_queue } = aplusVar;
 		/**
 		 * @example:
 		 *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
 		 * @params 一级平铺自定义全局属性键值对，不支持嵌套
 		 */
-		aplus_queue.push({
+		wx.aplus_queue.push({
 			action: 'aplus.setMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		});
@@ -115,8 +115,8 @@ export default {
 		// #endif
 		
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
-		aplus_queue.push({
+		// const { aplus_queue } = aplusVar;
+		wx.aplus_queue.push({
 			action: 'aplus.appendMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		})
@@ -135,7 +135,7 @@ export default {
 		// #endif
 
 		// #ifdef MP
-		const { aplus } = aplusVar;
+		// const { aplus } = aplusVar;
 		return aplus.getMetaInfo('globalproperty');
 		// #endif
 	},
@@ -155,8 +155,8 @@ export default {
 		// #endif
 		
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
-		aplus_queue.push({
+		// const { aplus_queue } = aplusVar;
+		wx.aplus_queue.push({
 			action: 'aplus.setMetaInfo',
 			arguments: ['globalproperty', {}]
 		})
@@ -189,8 +189,8 @@ export default {
 		// #endif
 		
 		// #ifdef MP
-		const {aplus_queue} = aplusVar;
-		aplus_queue.push({
+		// const {aplus_queue} = aplusVar;
+		wx.aplus_queue.push({
 			action: 'aplus.setMetaInfo',
 			arguments: ['_user_id', puid]
 		})
