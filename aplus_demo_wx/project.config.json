@@ -37,9 +37,10 @@
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
     "minifyWXML": true,
-    "useStaticServer": true
+    "useStaticServer": true,
+    "condition": false
   },
-  "appid": "wx761c0bae532a2466",
+  "appid": "wxe5afc293b8545ff6",
   "projectname": "aplus_demo_qq",
   "libVersion": "2.20.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",

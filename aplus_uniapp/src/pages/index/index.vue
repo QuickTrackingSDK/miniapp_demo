@@ -2,10 +2,10 @@
   <div class="uniapp">
     <view class="uniapp-view">
       <!-- #ifdef APP-PLUS -->
-	  <!--  #endif -->
+      <!--  #endif -->
       <section class="uni-left">SDK引入&_anony_id引入</section>
       <section class="uni-right">
-        <p class="uni-tip">非常重要,<br/>直接影响数据是否发送</p>
+        <p class="uni-tip">非常重要,<br />直接影响数据是否发送</p>
         <button type="primary" class="uni-viewcode" @tap="navigateToCode">点击查看集成代码</button>
       </section>
     </view>
@@ -24,20 +24,40 @@
         <!-- #endif -->
       </section>
     </view>
+
+    <view class="uniapp-view">
+      <section class="uni-left">页面透传属性测试</section>
+      <section class="uni-right">
+        <button type="primary" class="uni-setting" @tap="navigateToH2">进入H2</button>
+      </section>
+    </view>
+
+    <view class="uniapp-view">
+      <section class="uni-left">从h5页面进入原生页面</section>
+      <section class="uni-right">
+        <button type="primary" class="uni-setting" @tap="navigateToNativeApp">唤起App</button>
+      </section>
+    </view>
+
     <view class="uniapp-view">
       <section class="uni-left">按需设置全局/用户属性</section>
       <section class="uni-right">
         <button type="primary" class="uni-setting" @tap="navigateToSetting">设置全局/用户属性</button>
       </section>
     </view>
-    
+
     <view class="uniapp-view">
       <section class="uni-full">
-        收数域名：<input type="text" class="uni-tracker-env" id="tracker-domain" :value="aplusRhostV" @change="handlerDomainChange" />
-        appKey：<input type="text" class="uni-tracker-env" id="tracker-appkey" :value="appKey" @change="handlerAppKeyChange" />
-        可视化配置URL：<input type="text" class="uni-tracker-env" id="tracker-vt-url" :value="aplusVtCfgUrl" @change="handlerVtURLChange" />
-        QT系统域名：<input type="text" class="uni-tracker-env" id="tracker-sys-domain" :value="aplusApiHost" @change="handlerSysDomainChange" />
-        appInfoId：<input type="text" class="uni-tracker-env" id="tracker-appinfoid" :value="appInfoId" @change="handlerAppInfoIdChange" />
+        收数域名：<input type="text" class="uni-tracker-env" id="tracker-domain" :value="aplusRhostV"
+          @change="handlerDomainChange" />
+        appKey：<input type="text" class="uni-tracker-env" id="tracker-appkey" :value="appKey"
+          @change="handlerAppKeyChange" />
+        可视化配置URL：<input type="text" class="uni-tracker-env" id="tracker-vt-url" :value="aplusVtCfgUrl"
+          @change="handlerVtURLChange" />
+        QT系统域名：<input type="text" class="uni-tracker-env" id="tracker-sys-domain" :value="aplusApiHost"
+          @change="handlerSysDomainChange" />
+        appInfoId：<input type="text" class="uni-tracker-env" id="tracker-appinfoid" :value="appInfoId"
+          @change="handlerAppInfoIdChange" />
         <button type="primary" class="uni-viewcode" @tap="navigateToSubmit">更新可视化配置</button>
       </section>
     </view>
@@ -47,9 +67,11 @@
 <script>
 
 export default {
-	onLoad(options) {
 
-	},
+
+  onLoad(options) {
+
+  },
   data() {
     const defaultObj = {
       aplusRhostV: '',
@@ -185,6 +207,19 @@ export default {
       uni.navigateTo({
         url: '/pages/setting/index'
       })
+    },
+    navigateToH2() {
+      uni.navigateTo({
+        url: '/pages/transp/h2'
+      })
+    },
+    navigateToApp() {
+      console.log(browser.versions)
+      if (browser.versions.ios) {
+        window.location.href = "xxx"; //iOS链接
+      } else if (browser.versions.android) {
+        window.location.href = "umeng://test.umengdemo/page_analytics";  //跳转spm_demo AnalyticsHome页
+      }
     }
   }
 }
@@ -195,44 +230,52 @@ export default {
   min-height: 100vh;
   background-color: rgb(235, 237, 243);
   overflow: hidden;
+
   .uniapp-view {
     display: flex;
     justify-content: space-between;
     margin: 20px 3% 0;
     padding: 2%;
     background-color: #fff;
-    -webkit-box-shadow: #ccc 0px 0px 10px; 
+    -webkit-box-shadow: #ccc 0px 0px 10px;
     -moz-box-shadow: #ccc 0px 0px 10px;
     font-size: 16px;
+
     .uni-full {
       width: 100%;
     }
-    .uni-left{
+
+    .uni-left {
       width: 40%;
       text-align: center;
       border: 1px dashed #ccc;
       display: flex;
       align-items: center;
+
       button {
         line-height: 30px;
         padding: 0;
       }
     }
-    .uni-right{
+
+    .uni-right {
       width: 60%;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+
       button {
         width: 88%;
         line-height: 37px;
         margin: 5px 0;
         font-size: 14px;
       }
+
       .uni-tip {
         width: 88%;
       }
     }
+
     .uni-tracker-env {
       margin: 4px 0;
       border: 1px solid #d0d1d2;
@@ -244,5 +287,4 @@ export default {
     }
   }
 }
-
 </style>
