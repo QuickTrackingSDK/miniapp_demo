@@ -92,7 +92,7 @@
     "h5" : {
         "template" : "index.html",
         "router" : {
-            "mode" : "hash"
+            "mode" : "history"
         }
     }
 }
