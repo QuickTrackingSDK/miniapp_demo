@@ -213,7 +213,7 @@ export default {
         url: '/pages/transp/h2'
       })
     },
-    navigateToApp() {
+    navigateToNativeApp() {
       console.log(browser.versions)
       if (browser.versions.ios) {
         window.location.href = "xxx"; //iOS链接

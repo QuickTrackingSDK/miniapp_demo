@@ -6,11 +6,17 @@
     <div class="pv-btn">
       <button type="primary" @tap="sendPv">发送pv</button>
     </div>
+    <div class="pv-btn">
+      <button type="primary" @tap="toggleVConsole">调试</button>
+    </div>
   </div>
 </template>
 
 <script>
 import UmengSDK from '../../../utils/umengAdaptor.js'
+import VConsole from 'vconsole';
+
+const vConsole = new VConsole({ theme: 'dark' });
 
 const browser = {
   versions: function () {
@@ -45,6 +51,7 @@ const browser = {
   }(),
   language: (navigator.browserLanguage || navigator.language).toLowerCase()
 };
+
 export default {
   methods: {
     sendPv: function () {
@@ -52,13 +59,23 @@ export default {
       UmengSDK.sendPV({ a: 1, b: 2, c: 3, page_name: 'page_h2' })
     },
     navigateToApp() {
-      console.log(browser.versions)
+      console.log("JS 桥接")
+      SpmAgent.updateNextPageProperties({ "transfer_from_h3": 'value_33' });
+      console.log(SpmAgent)
+      // console.log(browser.versions)
       if (browser.versions.ios) {
-        // window.location.href = "https://a.app.qq.com/o/simple.jsp?pkgname=xxx"; //问后端小哥哥要这个链接
+        window.location.href = "xxx"; //iOS链接
       } else if (browser.versions.android) {
-        window.location.href = "umeng://test.umengdemo/page_analytics";  //跳转spm_demo AnalyticsHome页
+        window.location.href = "umeng://test.umengdemo/page_spm";  //跳转spm_demo Home页
       }
-    }
+    },
+    toggleVConsole() {
+      vConsole.show();
+      // setTimeout(() => {
+      //   vConsole.hide();
+      // }, 1000);
+      showTips();
+    },
   }
 }
 </script>
