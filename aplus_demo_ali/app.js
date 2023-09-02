@@ -78,13 +78,10 @@ const aplusConfig = {
     }
 };
 
-// const { AplusMini } = require("qt-miniprogram"); 
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
-
-// const aplus = AplusMini.create({ ...aplusConfig });
+import { initQTSDK } from './utils/qt_mini.esm';
+initQTSDK(aplusConfig);
 
 App({
-    aplus,
     onLaunch: function() {
         if (!_my.cloud) {
             console.error("请使用 2.2.3 或以上的基础库以使用云能力");
