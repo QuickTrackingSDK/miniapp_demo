@@ -18,6 +18,17 @@
 <script>
 import UmengSDK from '../../../utils/umengAdaptor'
 export default {
+	onShow() {
+		aplus.updatePageProperties('click_page', {
+			click_page_cusp1: 1
+		});
+		
+		
+		
+		UmengSDK.sendPV({is_auto: false}, {
+			page_name: 'click_page'
+		});
+	},
     data() {
         return {
             detail: {

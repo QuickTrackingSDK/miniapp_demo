@@ -1,4 +1,10 @@
 <script>
+	import VConsole from 'vconsole';
+	
+	const vConsole = new VConsole({
+		theme: 'dark'
+	});
+	
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')

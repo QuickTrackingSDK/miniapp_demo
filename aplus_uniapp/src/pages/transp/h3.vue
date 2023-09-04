@@ -16,7 +16,7 @@
 			<button type="primary" @tap="getPP">获取页面属性</button>
 		</div>
 		<div class="pv-btn">
-			<button type="primary" @tap="syncPageTransp">syncPageTransp</button>
+			<button type="primary" @tap="onPageShow">syncPageTransp</button>
 		</div>
 	</div>
 </template>
@@ -24,11 +24,7 @@
 <script>
 import aplus from '../../../utils/aplus';
 import UmengSDK from '../../../utils/umengAdaptor.js'
-import VConsole from 'vconsole';
 
-const vConsole = new VConsole({
-	theme: 'dark'
-});
 
 const browser = {
 	versions: function () {
@@ -99,9 +95,9 @@ export default {
 				page_name: 'h3_page'
 			})
 		},
-		syncPageTransp() {
+		onPageShow() {
 			console.log("aplus == ", window.aplus)
-			window.aplus.syncPageTransp();
+			window.aplus.onPageShow();
 		},
 		navigateToApp() {
 			console.log("JS 桥接")

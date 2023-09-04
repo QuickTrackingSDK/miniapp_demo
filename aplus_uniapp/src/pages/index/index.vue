@@ -26,7 +26,7 @@
 		</view>
 
 		<view class="uniapp-view">
-			<section class="uni-left">页面透传属性测试</section>
+			<section class="uni-left uni-transp">页面透传属性测试</section>
 			<section class="uni-right">
 				<button type="primary" class="uni-setting" @tap="navigateToH2">进入H2（不带透传属性）</button>
 			</section>
@@ -265,6 +265,9 @@ export default {
 			})
 		},
 		navigateToClick() {
+			aplus.updateNextPageProperties({
+				"transp_from_h1": "h1给h2的透传属性",
+			});
 			uni.navigateTo({
 				url: '/pages/click/click'
 			})
