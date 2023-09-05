@@ -110,18 +110,18 @@ export default {
 				'aplusReady',
 				function (status) {
 					if (status === 'complete') {
-						aplus.updatePageProperties(
+						window.aplus.updatePageProperties(
 							"h1_page",
 							{
 								cusp_h1_p: 'h1的事件属性',
 							}
 						);
 
-						console.log('h1页面属性：', aplus.getPageProperties('h1_page'));
-						console.log("事件属性 cusp_h1_p ==", aplus.getPageProperty("h1_page", "cusp_h1_p",
+						console.log('h1页面属性：', window.aplus.getPageProperties('h1_page'));
+						console.log("事件属性 cusp_h1_p ==", window.aplus.getPageProperty("h1_page", "cusp_h1_p",
 							"cusp"));
-						console.log("事件属性 transp_from_h2 ==", aplus.getPageProperty("h1_page", "transp_from_h2", "transp"));
-						aplus.sendPV({
+						console.log("事件属性 transp_from_h2 ==", window.aplus.getPageProperty("h1_page", "transp_from_h2", "transp"));
+						window.aplus.sendPV({
 							is_auto: false
 						}, {});
 					}
@@ -265,7 +265,7 @@ export default {
 			})
 		},
 		navigateToClick() {
-			aplus.updateNextPageProperties({
+			window.aplus.updateNextPageProperties({
 				"transp_from_h1": "h1给h2的透传属性",
 			});
 			uni.navigateTo({
@@ -298,7 +298,7 @@ export default {
 			})
 		},
 		navigateToH2WithHole() {
-			aplus.updateNextPageProperties({
+			window.aplus.updateNextPageProperties({
 				"transp_from_h1": "h1给h2的透传属性",
 			});
 

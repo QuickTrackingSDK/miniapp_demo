@@ -23,7 +23,7 @@ export default {
 	},
 	methods: {
 		sendPv: function () {
-			
+
 			// #ifdef H5
 			aplus_queue.push({
 				action: 'aplus.aplus_pubsub.subscribe',
@@ -31,16 +31,16 @@ export default {
 					'aplusReady',
 					function (status) {
 						if (status === 'complete') {
-							aplus.updatePageProperties('h2_page', {
+							window.aplus.updatePageProperties('h2_page', {
 								cusp_h2_p: 'h2页面浏览的事件属性'
 							});
 
-							console.log('h2的页面属性：', aplus.getPageProperties('h2_page'));
+							console.log('h2的页面属性：', window.aplus.getPageProperties('h2_page'));
 
-							console.log("事件属性 cusp_h2_p ==", aplus.getPageProperty("h2_page", "cusp_h2_p", "cusp"));
-							console.log("透传事件属性 transp_from_h1 ==", aplus.getPageProperty("h2_page", "transp_from_h1",
+							console.log("事件属性 cusp_h2_p ==", window.aplus.getPageProperty("h2_page", "cusp_h2_p", "cusp"));
+							console.log("透传事件属性 transp_from_h1 ==", window.aplus.getPageProperty("h2_page", "transp_from_h1",
 								"transp"));
-							console.log("透传事件属性 transp_from_h3 ==", aplus.getPageProperty("h2_page", "transp_from_h3",
+							console.log("透传事件属性 transp_from_h3 ==", window.aplus.getPageProperty("h2_page", "transp_from_h3",
 								"transp"));
 						}
 					}
@@ -57,7 +57,7 @@ export default {
 			})
 		},
 		navigateToH3() {
-			aplus.updateNextPageProperties({
+			window.aplus.updateNextPageProperties({
 				transp_from_h2: 'h2给h3的透传属性'
 			})
 
@@ -67,7 +67,7 @@ export default {
 		},
 
 		navigateToH1() {
-			aplus.updateNextPageProperties({
+			window.aplus.updateNextPageProperties({
 				transp_from_h2: 'h2给h1的透传属性'
 			})
 			uni.navigateBack({
@@ -77,7 +77,7 @@ export default {
 
 		refresh() {
 			// #ifdef H5
-			aplus.onPageHide();
+			window.aplus.onPageHide();
 			location.reload();
 			// #endif
 		},
