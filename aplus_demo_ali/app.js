@@ -20,7 +20,7 @@ const aplusConfig = {
         // POC环境
         appKey: trackerInfo.appKey,
         appInfoId: trackerInfo.appInfoId,
-        "aplus-rhost-v": trackerInfo.aplusRhostV,
+        trackDomain: trackerInfo.aplusRhostV,
         "aplus-vt-cfg-url":
             trackerInfo.aplusVtCfgUrl,
         // 已发布的配置地址
@@ -78,7 +78,7 @@ const aplusConfig = {
     }
 };
 
-import { initQTSDK } from './utils/qt_mini.esm';
+import { initQTSDK } from './utils/qt_mini.umd';
 initQTSDK(aplusConfig);
 
 App({

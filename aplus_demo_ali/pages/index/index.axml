@@ -31,9 +31,9 @@
       <button class='right-viewcode primary-style' type='primary' onTap='navigateToCustom'>
         自定义事件
       </button>
-      <button class='right-viewcode primary-style' type='primary' onTap='navigateToVT'>
+      <!-- <button class='right-viewcode primary-style' type='primary' onTap='navigateToVT'>
         去看可视化demo
-      </button>
+      </button> -->
     </view>
   </view>
   <view class='demo-view'>
