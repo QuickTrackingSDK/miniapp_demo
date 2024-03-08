@@ -83,7 +83,7 @@ Page({
   onAplusClk(e) {
     const {
       aplus
-    } = getApp(); // console.log(aplus, 'aplus')
+    } = tt; // console.log(aplus, 'aplus')
     // aplus.aplus_pubsub('ready', e, this)
   }
 

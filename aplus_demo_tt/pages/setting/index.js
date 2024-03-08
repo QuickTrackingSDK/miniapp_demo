@@ -22,7 +22,7 @@ Page({
 
     const {
       aplus
-    } = getApp();
+    } = tt;
     aplus.setMetaInfo('globalproperty', { ...this.data.gp
     });
   },
@@ -31,7 +31,7 @@ Page({
     console.log('当前用户属性：', JSON.stringify(this.data.up));
     const {
       aplus
-    } = getApp();
+    } = tt;
     console.log(aplus, 'aplus');
     aplus.record('$$_user_profile', 'OTHER', { ...this.data.up
     });
@@ -40,7 +40,7 @@ Page({
   setUserId() {
     const {
       aplus
-    } = getApp();
+    } = tt;
     console.log('当前userid:', this.data.puid);
     aplus.setMetaInfo('_user_id', this.data.puid);
   },

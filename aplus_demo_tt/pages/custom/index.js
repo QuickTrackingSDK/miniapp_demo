@@ -17,7 +17,7 @@ Page({
   otherEvent() {
     const {
       aplus
-    } = getApp();
+    } = tt;
     aplus.record('test_other_ekv', 'OTHER', {
       a: 1,
       b: 2,

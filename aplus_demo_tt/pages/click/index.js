@@ -13,7 +13,7 @@ Page({
     console.log('yz-----', this.data.detail);
     const {
       aplus
-    } = getApp();
+    } = tt;
     aplus.record('test_clk', 'CLK', this.data.detail);
   }
 

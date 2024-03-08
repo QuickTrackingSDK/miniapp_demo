@@ -25,7 +25,7 @@
   </view>
   <view class="demo-view">
     <view class="demo-full">
-      收数域名：<input type="text" class="uni-tracker-env" id="tracker-domain" value="{{aplusRhostV}}" bindchange="handlerDomainChange" />
+      收数域名：<input type="text" class="uni-tracker-env" id="tracker-domain" value="{{trackDomain}}" bindchange="handlerDomainChange" />
       appKey：<input type="text" class="uni-tracker-env" id="tracker-appkey" value="{{appKey}}" bindchange="handlerAppKeyChange" />
       可视化配置URL：<input type="text" class="uni-tracker-env" id="tracker-vt-url" value="{{aplusVtCfgUrl}}" bindchange="handlerVtURLChange" />
       QT系统域名：<input type="text" class="uni-tracker-env" id="tracker-sys-domain" value="{{aplusApiHost}}" bindchange="handlerSysDomainChange" />
