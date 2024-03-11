@@ -19,7 +19,7 @@ const aplusConfig = {
     // POC环境
     'appKey': trackerInfo.appKey,
     'appInfoId': trackerInfo.appInfoId,
-    'aplus-rhost-v': trackerInfo.aplusRhostV,
+    'trackDomain': trackerInfo.trackDomain,
     'aplus-vt-cfg-url': trackerInfo.aplusVtCfgUrl,
     // 已发布的配置地址
     'DEBUG': true,
@@ -73,15 +73,10 @@ const aplusConfig = {
   }
 };
 
-const {
-  AplusMini
-} = require('qt-miniprogram'); // const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
+import { initQTSDK } from './utils/qt_mini.umd.js';
+initQTSDK(aplusConfig);
 
-
-const aplus = AplusMini.create({ ...aplusConfig
-});
 App({
-  aplus,
   onLaunch: function () {
     if (!tt.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力');

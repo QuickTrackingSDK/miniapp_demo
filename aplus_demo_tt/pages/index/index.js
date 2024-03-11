@@ -3,18 +3,19 @@
 // const { envList } = require('../../miniprogram/envList.js');
 Page({
   data: {
-    aplusRhostV: '',
+    trackDomain: '',
     aplusApiHost: '',
     aplusVtCfgUrl: '',
-    appKe: '',
+    appKey: '',
     appInfoId: ''
   },
   onLoad: function () {},
 
   handlerDomainChange(e) {
     this.setData({
-      'aplusRhostV': e.detail.value.trim()
+      'trackDomain': e.detail.value.trim()
     });
+    console.log("//////"+trackDomain)
   },
 
   handlerSysDomainChange(e) {
@@ -43,7 +44,7 @@ Page({
 
   navigateToSubmit() {
     const {
-      aplusRhostV = '',
+      trackDomain = '',
       aplusApiHost = '',
       aplusVtCfgUrl = '',
       appKey = '',
@@ -63,8 +64,9 @@ Page({
     //   return;
     // }
 
+
     tt.setStorageSync('__trackerInfo', {
-      aplusRhostV,
+      trackDomain,
       aplusApiHost,
       aplusVtCfgUrl,
       appKey,
