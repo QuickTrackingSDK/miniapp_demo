@@ -17,8 +17,6 @@ const aplusConfig = {
     'appKey': trackerInfo.appKey,
     'appInfoId': trackerInfo.appInfoId,
     'trackDomain': trackerInfo.aplusRhostV || 'log-api.aplus.emas-poc.com',
-    'aplus-vt-cfg-url': trackerInfo.aplusVtCfgUrl, // 已发布的配置地址
-    'aplus-api-host': trackerInfo.aplusApiHost, // 采集管理系统域名，用于可视化埋点验证
 
 
     'DEBUG': true,

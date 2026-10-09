@@ -17,9 +17,7 @@ const aplusConfig = {
 
     'appKey': trackerInfo.appKey,
     'appInfoId': trackerInfo.appInfoId,
-    'aplus-rhost-v': trackerInfo.aplusRhostV,
-    'aplus-vt-cfg-url': trackerInfo.aplusVtCfgUrl, // 已发布的配置地址
-    'aplus-api-host': trackerInfo.aplusApiHost, // 采集管理系统域名，用于可视化埋点验证
+    'trackDomain': trackerInfo.aplusRhostV,
 
     'DEBUG': true,
     // 'aplus-waiting': 'MAN', //关闭自动pv

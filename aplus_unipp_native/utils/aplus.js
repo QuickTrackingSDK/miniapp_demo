@@ -2,8 +2,8 @@
 import { initQTSDK } from './qt_mini.umd.js';
 const aplusConfig = {
 	metaInfo: {
-		'appKey': 'testAppKey',
-		'aplus-rhost-v': '采集日志上报域名，必填',
+		'appKey': '您的appKey',
+		'trackDomain': '采集日志上报域名，必填',
 		'DEBUG': true,
 		'aplus-waiting': 'MAN', //关闭自动pv
 		_anony_id: 'testOpenId', //必填

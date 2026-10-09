@@ -33,7 +33,7 @@ export default class Integrate extends Component {
         <View className="wrapper">
           <View>注意</View>
           <View>1. appkey: 要填写您平台对应的appkey</View>
-          <View>2. aplus-rhost-v: 需填写您的收数域名</View>
+          <View>2. trackDomain: 需填写您的收数域名</View>
           <View>3. _anony_id: 务必填写</View>
         </View>
       </View>

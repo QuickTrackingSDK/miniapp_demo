@@ -125,15 +125,7 @@ export default {
       });
       qt_queue.push({
         action: 'qt.setMetaInfo',
-        arguments: ['aplus-rhost-v', aplusRhostV]
-      });
-      qt_queue.push({
-        action: 'qt.setMetaInfo',
-        arguments: ['aplus-vt-cfg-url', aplusVtCfgUrl]
-      });
-      qt_queue.push({
-        action: 'qt.setMetaInfo',
-        arguments: ['aplus-api-host', aplusApiHost]
+        arguments: ['trackDomain', aplusRhostV]
       });
 
       wx.showModal({

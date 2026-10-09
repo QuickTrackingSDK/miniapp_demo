@@ -16,13 +16,9 @@ const random = getRandom(1, 1000);
 
 const aplusConfig = {
   metaInfo: {
-    "appKey": trackerInfo.appKey || "skuu0fdm4ksl236ladytzi1o",
+    "appKey": trackerInfo.appKey,
     "appInfoId": trackerInfo.appInfoId || "92522112133683",
-    "aplus-rhost-v": trackerInfo.aplusRhostV || "log-api.aplus.emas-poc.com", //日志发送去向，填域名，必填
-    "aplus-vt-cfg-url":
-      trackerInfo.aplusVtCfgUrl ||
-      "https://alidt.alicdn.com/alilog/vt/miniapp/skuu0fdm4ksl236ladytzi1o.json", // 已发布的配置地址
-    "aplus-api-host": trackerInfo.aplusApiHost || 'pre.aplus.emas-poc.com', // 采集管理系统域名，用于可视化埋点验证
+    "trackDomain": trackerInfo.aplusRhostV || "log-api.aplus.emas-poc.com", //日志发送去向，填域名，必填
     "_anony_id": "testOpenId" + random,
     '_user_id': 'testUserId_' + random,
     // "appId": "wx9e13f4e9923236ab", //和project.config.json里的appid保持一致，必填

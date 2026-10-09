@@ -29,8 +29,7 @@ function Document(props) {
           //通常私有云日志服务端域名类似于：quickaplus-web-api.xxx.com.cn, 具体域名要找交付同学要
           aplus_queue.push({
             action: 'aplus.setMetaInfo',
-            arguments: ['aplus-rhost-v', 'log-api.aplus.emas-poc.com']
-            // arguments: ['aplus-rhost-v', 'log-api-daily.aplus.emas-poc.com'],
+            arguments: ['trackDomain', 'log-api.aplus.emas-poc.com']
           });
           //开启调试模式
           aplus_queue.push({

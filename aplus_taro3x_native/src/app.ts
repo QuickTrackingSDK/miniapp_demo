@@ -17,10 +17,9 @@ const random = getRandom(1, 1000);
 
 const aplusConfig = {
   metaInfo: {
-    "appKey": trackerInfo.appKey || "56hdbh8rtp9ps08l4bdpai9p",
+    "appKey": trackerInfo.appKey,
     "appInfoId": trackerInfo.appInfoId || "92522112133683",
-    // "aplus-rhost-v": trackerInfo.aplusRhostV || "log-api.aplus.emas-poc.com", //日志发送去向，填域名，必填
-    'aplus-rhost-v': 'log-api.aplus.emas-poc.com',
+    'trackDomain': 'log-api.aplus.emas-poc.com',
     "_anony_id": "testOpenId" + random,
     '_user_id': 'testUserId_' + random,
     "DEBUG": true, // 埋点调试使用

@@ -13,9 +13,9 @@ const random = getRandom(1, 1000);
 
 const aplusConfig = {
   metaInfo: {
-    'appKey': trackerInfo.appKey || 'test_appKey', //必填
+    'appKey': trackerInfo.appKey, //必填
     'appInfoId': trackerInfo.appInfoId || 'anAppInfoId',
-    'aplus-rhost-v': trackerInfo.aplusRhostV || 'log-api-daily.aplus.emas-poc.com',  //必填 收数域名
+    'trackDomain': trackerInfo.aplusRhostV || 'log-api-daily.aplus.emas-poc.com',  //必填 收数域名
     'DEBUG': true, //调试模式 打印sdk日志
     '_anony_id': 'testOpenId', //必填
     //  "autoGetOpenid": true,
