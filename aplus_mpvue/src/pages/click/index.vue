@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import aplus from '../../utils/aplus';
+import '../../utils/aplus';
 
 export default {
   data() {
@@ -37,12 +37,12 @@ export default {
   methods: {
     navigateToClick() {
       console.log('点击事件被触发了')
-      aplus.record('test_clk', 'CLK', {})
+      wx.qt.record('test_clk', 'CLK', {})
     },
     onAplusClk(e) {
     if (wx) {
-      wx.aplus_queue.push({
-      action: 'aplus.aplus_pubsub.publish',
+      wx.qt_queue.push({
+      action: 'qt.qt_pubsub.publish',
       arguments: ['onAplusClk', {
         status: 'ready',
         event: e,
@@ -51,7 +51,7 @@ export default {
      })
     } else {
 
-      aplus.aplus_pubsub.publish('onAplusClk', {
+      wx.qt.qt_pubsub.publish('onAplusClk', {
         status: 'ready',
         event: e,
 			  context: this

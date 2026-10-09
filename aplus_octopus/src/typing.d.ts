@@ -8,3 +8,6 @@ declare module '*.svg' {
   const url: string;
   export default url;
 }
+
+// 支付宝小程序全局对象
+declare const my: any;

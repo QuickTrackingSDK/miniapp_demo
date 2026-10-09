@@ -15,11 +15,8 @@ Page({
 
   sendPv() {
     console.log('yz-----sendPV');
-    const {
-      aplus
-    } = getApp();
-    aplus.aplus_queue.push({
-      action: 'aplus.sendPV',
+    jd.qt_queue.push({
+      action: 'qt.sendPV',
       arguments: [{
         is_auto: false
       }, {

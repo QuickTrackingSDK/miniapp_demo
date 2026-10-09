@@ -1,45 +1,55 @@
-// import { isWeb } from '@uni/env';   
+// import { isWeb } from '@uni/env';
 const aplusMini = require('../utils/aplus');
 console.log(window, 'window')
 
+// 小程序端 QT SDK 将 qt / qt_queue 挂载在平台全局对象上，探测顺序与 SDK getPlatformContext 一致
+const getMpGlobal = () => {
+  if (typeof my !== 'undefined') return my;
+  if (typeof tt !== 'undefined') return tt;
+  if (typeof swan !== 'undefined') return swan;
+  if (typeof wx !== 'undefined') return wx;
+  if (typeof jd !== 'undefined') return jd;
+  return {};
+};
+
 const sendPV = (params) => {
   if (window.aplus_queue) {
-    const {aplus_queue} = window;
+    const { aplus_queue } = window;
     aplus_queue.push({
       action: 'aplus.sendPV',
-      arguments: [{is_auto: false}, {...params}]
+      arguments: [{ is_auto: false }, { ...params }]
     })
   } else {
-    const {aplus_queue} = aplusMini.default;
-    aplus_queue.push({
-      action: 'aplus.sendPV',
-      arguments: [{is_auto: false}, {...params}]
+    const qt_queue = getMpGlobal().qt_queue;
+    qt_queue.push({
+      action: 'qt.sendPV',
+      arguments: [{ is_auto: false }, { ...params }]
     })
   }
 };
 
 const sendEvent = (eventid, params, eventtype = 'CLK') => {
   if (window.aplus_queue) {
-    const {aplus_queue} = window;
+    const { aplus_queue } = window;
     aplus_queue.push({
       action: 'aplus.record',
-      arguments: [eventid, eventtype, {...params}]
+      arguments: [eventid, eventtype, { ...params }]
     })
   } else {
-    const {aplus_queue} = aplusMini.default;
-    aplus_queue.push({
-      action: 'aplus.record',
-      arguments: [eventid, eventtype, {...params}]
+    const qt_queue = getMpGlobal().qt_queue;
+    qt_queue.push({
+      action: 'qt.record',
+      arguments: [eventid, eventtype, { ...params }]
     })
   }
 };
 
 const onAplusClk = (e) => {
-  const aplus_queue = aplusMini.default.aplus_queue;
+  const qt_queue = getMpGlobal().qt_queue;
   const cp = getCurrentPages();
   const cpl = cp.length;
-  aplus_queue.push({
-    action: 'aplus.aplus_pubsub.publish',
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
     arguments: ['onAplusClk', {
       status: 'ready',
       event: e,
@@ -56,15 +66,15 @@ const setUserId = (userid) => {
   if (window.aplus_queue) {
     console.log('yz-----userid', userid);
 
-    const {aplus_queue} = window;
+    const { aplus_queue } = window;
     aplus_queue.push({
       action: 'aplus.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   } else {
-    const {aplus_queue} = aplusMini.default;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const qt_queue = getMpGlobal().qt_queue;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   }
@@ -83,14 +93,14 @@ const registerGlobalProperties = (params) => {
       arguments: ['globalproperty', { ...params }]
     });
   } else {
-    const {aplus_queue} = aplusMini.default;
+    const qt_queue = getMpGlobal().qt_queue;
     /**
      * @example:
-     *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
+     *  qt_queue.push({action: 'qt.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
      * @params 一级平铺自定义全局属性键值对，不支持嵌套
      */
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', { ...params }]
     });
   }
@@ -104,9 +114,9 @@ const appendGlobalProperties = (params) => {
       arguments: ['globalproperty', { ...params }]
     })
   } else {
-    const {aplus_queue} = aplusMini;
-    aplus_queue.push({
-      action: 'aplus.appendMetaInfo',
+    const qt_queue = getMpGlobal().qt_queue;
+    qt_queue.push({
+      action: 'qt.appendMetaInfo',
       arguments: ['globalproperty', { ...params }]
     })
   }
@@ -117,8 +127,8 @@ const getGlobalProperties = () => {
     const { aplus } = window;
     return aplus.getMetaInfo('globalproperty');
   } else {
-    const {aplus} = aplusMini;
-    return aplus.getMetaInfo('globalproperty');
+    const qt = getMpGlobal().qt;
+    return qt.getMetaInfo('globalproperty');
   }
 };
 
@@ -130,9 +140,9 @@ const clearGlobalProperties = () => {
       arguments: ['globalproperty', {}]
     })
   } else {
-    const { aplus_queue } = aplusMini;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const qt_queue = getMpGlobal().qt_queue;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', {}]
     })
   }

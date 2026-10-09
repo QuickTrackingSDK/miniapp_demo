@@ -68,6 +68,8 @@
 </template>
 
 <script>
+// #ifdef H5
+// 浏览器嗅探仅 H5 端可用：小程序运行环境无 navigator，模块初始化即执行会报错白屏
 const browser = {
 	versions: function () {
 		const u = navigator.userAgent,
@@ -101,6 +103,21 @@ const browser = {
 	}(),
 	language: (navigator.browserLanguage || navigator.language).toLowerCase()
 };
+// #endif
+// #ifndef H5
+// 小程序端降级：用 uni 系统信息提供 iOS/Android 判断（消费点 browser.versions.ios/android 不变）
+const browser = {
+	versions: function () {
+		const platform = uni.getSystemInfoSync().platform || '';
+		return {
+			mobile: true,
+			ios: platform === 'ios',
+			android: platform === 'android'
+		};
+	}(),
+	language: 'zh-cn'
+};
+// #endif
 export default {
 	onShow() {
 		// #ifdef H5
@@ -220,27 +237,25 @@ export default {
 				appInfoId
 			});
 
-			const {
-				aplus_queue
-			} = this.$aplus;
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
+			const qt_queue = wx.qt_queue;
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 				arguments: ['appKey', appKey]
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 				arguments: ['appInfoId', appInfoId]
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 				arguments: ['aplus-rhost-v', aplusRhostV]
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 				arguments: ['aplus-vt-cfg-url', aplusVtCfgUrl]
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 				arguments: ['aplus-api-host', aplusApiHost]
 			});
 

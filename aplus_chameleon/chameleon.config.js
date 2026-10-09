@@ -8,7 +8,7 @@ cml.config.merge({
   templateLang: "cml",
   templateType: "html",
   enableGlobalCheck: false,
-  platforms: ["web","weex","wx","alipay","baidu","qq"],
+  platforms: ["web", "weex", "wx", "alipay", "baidu", "qq"],
   // platforms: ["web","wx"],
   buildInfo: {
     wxAppId: '123456'

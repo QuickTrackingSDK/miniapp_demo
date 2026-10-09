@@ -2,17 +2,14 @@
 /* eslint-disable */
   import mpx, { createApp } from '@mpxjs/core'
   import apiProxy from '@mpxjs/api-proxy'
-  import aplus from './utils/aplus';
+  // 触发 QT SDK 初始化（内部已将 qt / qt_queue 挂载到平台全局对象上）
+  import './utils/aplus';
 
   mpx.use(apiProxy, { usePromise: true })
-  mpx.use(aplus);
 
   createApp({
     onLaunch (optoins) {
       console.log('yz-----options', optoins);
-      const { aplus_queue } = aplus;
-      console.log('yz-----aplus', aplus.aplus.sendPV());
-
     }
   })
 </script>

@@ -15,9 +15,9 @@
 </template>
 
 <script>
-  import { createPage } from '@mpxjs/core';
-  import AplusSDK from '../../utils/aplusAdapter';
-  createPage({
+  import { createPage } from '@mpxjs/core'
+import AplusSDK from '../../utils/aplusAdapter'
+createPage({
     data: {
       detail: {
         product: '水杯',
@@ -26,8 +26,8 @@
       }
     },
     methods: {
-      otherEvent: function() {
-        AplusSDK.sendEvent('test_other_ekv', this.detail, 'OTHER');
+      otherEvent: function () {
+        AplusSDK.sendEvent('test_other_ekv', this.detail, 'OTHER')
       }
     }
   })

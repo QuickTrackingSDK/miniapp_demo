@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import UmengSDK from '../../../utils/umengAdaptor.js'
+import UmengSDK from '../../utils/umengAdaptor.js'
 export default {
   methods: {
     sendPv: function () {

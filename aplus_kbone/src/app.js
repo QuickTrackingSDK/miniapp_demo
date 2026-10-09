@@ -55,20 +55,20 @@ const aplusConfig = {
     // 设置每个页面的page_name
     pageConfig: {
       'pages/index/index': {
-  		  'pageName': 'home_page'
-  		},
+        'pageName': 'home_page'
+      },
       'pages/vt/vtdemo1': {
         'pageName': 'vtdemo1'
       },
-  		'pages/click/click': {
-  		  'pageName': 'clickevent_page'
-  		},
-  		'pages/pv/pv': {
-  			'pageName': 'manpv_page'
-  		},
-  		'pages/setting/index': {
-  			'pageName': 'setting_page'
-  		},
+      'pages/click/click': {
+        'pageName': 'clickevent_page'
+      },
+      'pages/pv/pv': {
+        'pageName': 'manpv_page'
+      },
+      'pages/setting/index': {
+        'pageName': 'setting_page'
+      },
       'pages/exposure/swiper': {
         'pageName': 'exp_page'
       },
@@ -91,35 +91,36 @@ const aplusConfig = {
   },
 };
 
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig);
+const { initQTSDK } = require('./utils/qt_mini.umd.js');
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，页面直接使用 wx.qt / wx.qt_queue
+initQTSDK(aplusConfig);
 
 App({
-    aplus,
-    onLaunch(options) {
-        console.log('App.onLaunch --> ', options)
-    },
-    onShow(options) {
-        console.log('App.onShow --> ', options)
-        const pages = getCurrentPages() || []
-        const currentPage = pages[pages.length - 1]
-        if (currentPage) console.log('currentPage --> ', currentPage.pageId)
-    },
-    onHide() {
-        console.log('App.onHide --> ')
-        const pages = getCurrentPages() || []
-        const currentPage = pages[pages.length - 1]
-        if (currentPage) console.log('currentPage --> ', currentPage.pageId)
-    },
-    onError(err) {
-        console.log('App.onError --> ', err)
-    },
-    onPageNotFound(options) {
-        console.log('App.onPageNotFound --> ', options)
-    },
-    onUnhandledRejection(options) {
-        console.log('App.onUnhandledRejection --> ', options)
-    },
-    onThemeChange(options) {
-        console.log('App.onThemeChange --> ', options)
-    },
+  onLaunch(options) {
+    console.log('App.onLaunch --> ', options)
+  },
+  onShow(options) {
+    console.log('App.onShow --> ', options)
+    const pages = getCurrentPages() || []
+    const currentPage = pages[pages.length - 1]
+    if (currentPage) console.log('currentPage --> ', currentPage.pageId)
+  },
+  onHide() {
+    console.log('App.onHide --> ')
+    const pages = getCurrentPages() || []
+    const currentPage = pages[pages.length - 1]
+    if (currentPage) console.log('currentPage --> ', currentPage.pageId)
+  },
+  onError(err) {
+    console.log('App.onError --> ', err)
+  },
+  onPageNotFound(options) {
+    console.log('App.onPageNotFound --> ', options)
+  },
+  onUnhandledRejection(options) {
+    console.log('App.onUnhandledRejection --> ', options)
+  },
+  onThemeChange(options) {
+    console.log('App.onThemeChange --> ', options)
+  },
 })

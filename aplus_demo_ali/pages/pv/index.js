@@ -27,8 +27,8 @@ _Page({
 
     sendPv() {
         console.log("yz-----sendPV");
-        const { aplus } = getApp();
-        aplus.sendPV(
+        const qt = my.qt;
+        qt.sendPV(
             {
                 is_auto: false
             },

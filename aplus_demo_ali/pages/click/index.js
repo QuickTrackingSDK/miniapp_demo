@@ -18,7 +18,7 @@ _Page({
 
     clickEvent() {
         console.log("yz-----", this.data.detail);
-        const { aplus } = getApp();
-        aplus.record("test_clk", "CLK", this.data.detail);
+        const qt = my.qt;
+        qt.record("test_clk", "CLK", this.data.detail);
     }
 });

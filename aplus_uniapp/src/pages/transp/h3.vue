@@ -22,10 +22,12 @@
 </template>
 
 <script>
-import aplus from '../../../utils/aplus';
+import '../../../utils/aplus';
 import UmengSDK from '../../../utils/umengAdaptor.js'
 
 
+// #ifdef H5
+// 浏览器嗅探仅 H5 端可用：小程序运行环境无 navigator，模块初始化即执行会报错
 const browser = {
 	versions: function () {
 		const u = navigator.userAgent,
@@ -59,6 +61,21 @@ const browser = {
 	}(),
 	language: (navigator.browserLanguage || navigator.language).toLowerCase()
 };
+// #endif
+// #ifndef H5
+// 小程序端降级：用 uni 系统信息提供 iOS/Android 判断（消费点 browser.versions.ios/android 不变）
+const browser = {
+	versions: function () {
+		const platform = uni.getSystemInfoSync().platform || '';
+		return {
+			mobile: true,
+			ios: platform === 'ios',
+			android: platform === 'android'
+		};
+	}(),
+	language: 'zh-cn'
+};
+// #endif
 
 export default {
 	onShow() {
@@ -131,7 +148,13 @@ export default {
 			// #endif
 		},
 		toggleVConsole() {
-			vConsole.show();
+			// #ifdef H5
+			try {
+				vConsole.show();
+			} catch (e) {
+				// vConsole 实例由 App.vue 创建且未导出，此按钮为模板残留，点击无效果
+			}
+			// #endif
 			// setTimeout(() => {
 			//   vConsole.hide();
 			// }, 1000);

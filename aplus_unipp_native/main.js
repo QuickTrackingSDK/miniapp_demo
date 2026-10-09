@@ -6,8 +6,8 @@ import App from './App'
 import Vue from 'vue'
 
 // #ifdef MP
-import aplus from './utils/aplus.js'
-Vue.use(aplus);
+// 触发 QT SDK 初始化（内部已将 qt / qt_queue 挂载到平台全局对象上）
+import './utils/aplus.js'
 // #endif
 
 Vue.config.productionTip = false
@@ -24,8 +24,7 @@ export function createApp() {
   const app = createSSRApp(App)
   
   // #ifdef MP
-  import aplus from './utils/aplus.js'
-  app.use(aplus);
+  import './utils/aplus.js'
   // #endif
   
   return {

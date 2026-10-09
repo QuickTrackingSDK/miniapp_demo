@@ -141,11 +141,11 @@ const aplusConfig = {
 };
 
 
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
+const { initQTSDK } = require('./utils/qt_mini.umd.js')
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，封装层直接从平台全局对象获取
+initQTSDK(aplusConfig)
 
 class App extends Component {
-
-  aplus = aplus; //将aplus注入到Taro.getApp()内
 
   componentDidMount() {}
 

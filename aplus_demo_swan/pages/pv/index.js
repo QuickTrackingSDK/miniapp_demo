@@ -13,14 +13,14 @@ Page({
     }]
   },
 
-  onReady() {},
+  onReady() { },
 
   sendPv() {
     console.log('yz-----sendPV');
     const {
-      aplus
+      qt
     } = getApp();
-    aplus.sendPV({
+    qt.sendPV({
       is_auto: false
     }, {
       a: 1,

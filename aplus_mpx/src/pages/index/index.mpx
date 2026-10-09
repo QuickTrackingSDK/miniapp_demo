@@ -70,19 +70,19 @@
         mpx.navigateTo({ url: '/pages/vt/vtdemo1' })
       },
       handlerDomainChange (e) {
-        this.setData({aplusRhostV: e.detail.value});
+        this.setData({ aplusRhostV: e.detail.value })
       },
       handlerSysDomainChange (e) {
-        this.setData({aplusApiHost: e.detail.value});
+        this.setData({ aplusApiHost: e.detail.value })
       },
       handlerVtURLChange (e) {
-        this.setData({aplusVtCfgUrl: e.detail.value});
+        this.setData({ aplusVtCfgUrl: e.detail.value })
       },
       handlerAppKeyChange (e) {
-        this.setData({appKey: e.detail.value});
+        this.setData({ appKey: e.detail.value })
       },
       handlerAppInfoIdChange (e) {
-        this.setData({appInfoId: e.detail.value});
+        this.setData({ appInfoId: e.detail.value })
       },
       navigateToSubmit () {
         const { aplusRhostV = '', aplusApiHost = '', aplusVtCfgUrl = '', appKey = '', appInfoId = '' } = this.data

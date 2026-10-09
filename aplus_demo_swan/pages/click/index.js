@@ -9,14 +9,14 @@ Page({
     }
   },
 
-  onReady() {},
+  onReady() { },
 
   clickEvent() {
     console.log('yz-----', this.data.detail);
     const {
-      aplus
+      qt
     } = getApp();
-    aplus.record('test_clk', 'CLK', this.data.detail);
+    qt.record('test_clk', 'CLK', this.data.detail);
   }
 
 });

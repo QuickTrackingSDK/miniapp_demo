@@ -82,10 +82,11 @@ const aplusConfig = {
     }
   }
 }
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
+const { initQTSDK } = require('./utils/qt_mini.umd.js')
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，页面直接使用 wx.qt / wx.qt_queue
+initQTSDK(aplusConfig)
 
 App({
-  aplus,
   onLaunch: function () {
     this.globalData = {};
   }

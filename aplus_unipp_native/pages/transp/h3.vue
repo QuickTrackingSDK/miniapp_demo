@@ -13,11 +13,16 @@
 </template>
 
 <script>
-import UmengSDK from '../../../utils/umengAdaptor.js'
+import UmengSDK from '../../utils/umengAdaptor.js'
+// #ifdef H5
+// vconsole 仅 H5 端启用：小程序运行环境无 navigator/window，模块初始化会报错
 import VConsole from 'vconsole';
 
 const vConsole = new VConsole({ theme: 'dark' });
+// #endif
 
+// #ifdef H5
+// 浏览器嗅探仅 H5 端可用
 const browser = {
   versions: function () {
     const u = navigator.userAgent,
@@ -51,6 +56,21 @@ const browser = {
   }(),
   language: (navigator.browserLanguage || navigator.language).toLowerCase()
 };
+// #endif
+// #ifndef H5
+// 小程序端降级：用 uni 系统信息提供 iOS/Android 判断（消费点 browser.versions.ios/android 不变）
+const browser = {
+  versions: function () {
+    const platform = uni.getSystemInfoSync().platform || '';
+    return {
+      mobile: true,
+      ios: platform === 'ios',
+      android: platform === 'android'
+    };
+  }(),
+  language: 'zh-cn'
+};
+// #endif
 
 export default {
   methods: {
@@ -70,7 +90,9 @@ export default {
       }
     },
     toggleVConsole() {
+      // #ifdef H5
       vConsole.show();
+      // #endif
       // setTimeout(() => {
       //   vConsole.hide();
       // }, 1000);

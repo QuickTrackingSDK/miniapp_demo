@@ -85,10 +85,12 @@ const aplusConfig = {
   }
 }
 
-const aplus = require('./utils/aplus_mini_cloud_um.js')(aplusConfig);
+const { initQTSDK } = require('./utils/qt_mini.umd.js');
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，封装层直接使用 my.qt / my.qt_queue
+initQTSDK(aplusConfig);
 
 class Index extends React.Component {
-  
+
   constructor(props: any) {
     super(props);
   }
@@ -99,7 +101,7 @@ class Index extends React.Component {
   // onShareAppMessage(...args) {
   //   console.log('==> args', args)
   // }
-  
+
   render() {
 
     const { children }: any = this.props;
@@ -117,7 +119,7 @@ class Index extends React.Component {
           <Route name="Setting" component={Setting} />
         </Router>
         {children}
-        </>
+      </>
     )
   }
 }

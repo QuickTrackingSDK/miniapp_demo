@@ -1,8 +1,18 @@
 
+declare const wx: any;
+declare const tt: any;
+
+// 微信 + 抖音双端：QT SDK 将 qt / qt_queue 挂载在平台全局对象上
+const getMpGlobal = () => {
+  if (typeof wx !== 'undefined') return wx;
+  if (typeof tt !== 'undefined') return tt;
+  return {};
+};
+
 const sendPV = function (args: object) {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.sendPV',
+  const qt_queue = getMpGlobal().qt_queue;
+  qt_queue.push({
+    action: 'qt.sendPV',
     arguments: [{
       is_auto: false
     }, {
@@ -12,37 +22,37 @@ const sendPV = function (args: object) {
 }
 
 const record = function (trackEventCode: string, eventType: string, eventParams: object): void {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  console.log('yz-----aplus_queue', trackEventCode, eventType, eventParams);
+  const qt_queue = getMpGlobal().qt_queue;
+  console.log('yz-----qt_queue', trackEventCode, eventType, eventParams);
 
-  aplus_queue.push({
-    action: 'aplus.record',
+  qt_queue.push({
+    action: 'qt.record',
     arguments: [trackEventCode, eventType, eventParams],
   });
 }
 
 const setMetaInfo = function(metaKey: string, metaValue: any): void {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.setMetaInfo',
+  const qt_queue = getMpGlobal().qt_queue;
+  qt_queue.push({
+    action: 'qt.setMetaInfo',
       arguments: [metaKey, metaValue]
     });
 }
 
 const appendMetaInfo = function(metaKey: string, metaValue: any): void {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.appendMetaInfo',
+  const qt_queue = getMpGlobal().qt_queue;
+  qt_queue.push({
+    action: 'qt.appendMetaInfo',
       arguments: [metaKey, metaValue]
     });
 }
 
 const onAplusClk = function (e: any) {
-  const aplus_queue = getApp().aplus.aplus_queue;
+  const qt_queue = getMpGlobal().qt_queue;
   const cp = getCurrentPages();
   const cpl = cp.length;
-  aplus_queue.push({
-    action: 'aplus.aplus_pubsub.publish',
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
     arguments: ['onAplusClk', {
       status: 'ready',
       event: e,
@@ -52,11 +62,11 @@ const onAplusClk = function (e: any) {
 }
 
 const onAplusTouch = function (e: any) {
-  const aplus_queue = getApp().aplus.aplus_queue;
+  const qt_queue = getMpGlobal().qt_queue;
   const cp = getCurrentPages();
   const cpl = cp.length;
-  aplus_queue.push({
-    action: 'aplus.aplus_pubsub.publish',
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
     arguments: ['onAplusTouch', {
       status: 'ready',
       event: e,

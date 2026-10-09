@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Taro from "_@tarojs_taro@3.3.17@@tarojs/taro";
+import Taro from "@tarojs/taro";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
   Image,
   Input,
   Button,
-} from "_@tarojs_components@3.3.17@@tarojs/components";
+} from "@tarojs/components";
 // import "./index.less";
 
 export default class Integrate extends Component {

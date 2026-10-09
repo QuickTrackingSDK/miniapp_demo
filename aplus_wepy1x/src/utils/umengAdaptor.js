@@ -3,43 +3,43 @@ const aplusMini = require('./aplus');
 console.log(window, 'window')
 const sendPV = (params) => {
   if (window) {
-    const {aplus_queue} = window;
+    const { aplus_queue } = window;
     aplus_queue.push({
       action: 'aplus.sendPV',
-      arguments: [{is_auto: false}, {...params}]
+      arguments: [{ is_auto: false }, { ...params }]
     })
   } else {
-    const {aplus_queue} = aplusMini.default;
-    aplus_queue.push({
-      action: 'aplus.sendPV',
-      arguments: [{is_auto: false}, {...params}]
+    const qt_queue = wx.qt_queue;
+    qt_queue.push({
+      action: 'qt.sendPV',
+      arguments: [{ is_auto: false }, { ...params }]
     })
   }
 };
 
 const sendEvent = (eventid, params, eventtype = 'CLK') => {
   if (window) {
-    const {aplus_queue} = window;
+    const { aplus_queue } = window;
     aplus_queue.push({
       action: 'aplus.record',
-      arguments: [eventid, eventtype, {...params}]
+      arguments: [eventid, eventtype, { ...params }]
     })
   } else {
-	console.log(aplusMini.default, 'aplusMini.default')
-    const {aplus_queue} = aplusMini.default;
-    aplus_queue.push({
-      action: 'aplus.record',
-      arguments: [eventid, eventtype, {...params}]
+    console.log(wx.qt, 'wx.qt')
+    const qt_queue = wx.qt_queue;
+    qt_queue.push({
+      action: 'qt.record',
+      arguments: [eventid, eventtype, { ...params }]
     })
   }
 };
 
 const onAplusClk = (e) => {
-  const aplus_queue = aplusMini.default.aplus_queue;
+  const qt_queue = wx.qt_queue;
   const cp = getCurrentPages();
   const cpl = cp.length;
-  aplus_queue.push({
-    action: 'aplus.aplus_pubsub.publish',
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
     arguments: ['onAplusClk', {
       status: 'ready',
       event: e,
@@ -56,15 +56,15 @@ const setUserId = (userid) => {
   if (window) {
     console.log('yz-----userid', userid);
 
-    const {aplus_queue} = window;
+    const { aplus_queue } = window;
     aplus_queue.push({
       action: 'aplus.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   } else {
-    const {aplus_queue} = aplusMini.default;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const qt_queue = wx.qt_queue;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   }
@@ -83,14 +83,14 @@ const registerGlobalProperties = (params) => {
       arguments: ['globalproperty', { ...params }]
     });
   } else {
-    const {aplus_queue} = aplusMini.default;
+    const qt_queue = wx.qt_queue;
     /**
      * @example:
-     *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
+     *  qt_queue.push({action: 'qt.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
      * @params 一级平铺自定义全局属性键值对，不支持嵌套
      */
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', { ...params }]
     });
   }
@@ -104,9 +104,9 @@ const appendGlobalProperties = (params) => {
       arguments: ['globalproperty', { ...params }]
     })
   } else {
-    const {aplus_queue} = aplusMini;
-    aplus_queue.push({
-      action: 'aplus.appendMetaInfo',
+    const qt_queue = wx.qt_queue;
+    qt_queue.push({
+      action: 'qt.appendMetaInfo',
       arguments: ['globalproperty', { ...params }]
     })
   }
@@ -117,8 +117,8 @@ const getGlobalProperties = () => {
     const { aplus } = window;
     return aplus.getMetaInfo('globalproperty');
   } else {
-    const {aplus} = aplusMini;
-    return aplus.getMetaInfo('globalproperty');
+    const qt = wx.qt;
+    return qt.getMetaInfo('globalproperty');
   }
 };
 
@@ -130,9 +130,9 @@ const clearGlobalProperties = () => {
       arguments: ['globalproperty', {}]
     })
   } else {
-    const { aplus_queue } = aplusMini;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const qt_queue = wx.qt_queue;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', {}]
     })
   }

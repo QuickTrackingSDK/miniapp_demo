@@ -114,25 +114,25 @@ export default {
         appInfoId
       });
 
-      const { aplus_queue } = this.$aplus;
-      aplus_queue.push({
-        action: 'aplus.setMetaInfo',
+      const qt_queue = wx.qt_queue;
+      qt_queue.push({
+        action: 'qt.setMetaInfo',
         arguments: ['appKey', appKey]
       });
-      aplus_queue.push({
-        action: 'aplus.setMetaInfo',
+      qt_queue.push({
+        action: 'qt.setMetaInfo',
         arguments: ['appInfoId', appInfoId]
       });
-      aplus_queue.push({
-        action: 'aplus.setMetaInfo',
+      qt_queue.push({
+        action: 'qt.setMetaInfo',
         arguments: ['aplus-rhost-v', aplusRhostV]
       });
-      aplus_queue.push({
-        action: 'aplus.setMetaInfo',
+      qt_queue.push({
+        action: 'qt.setMetaInfo',
         arguments: ['aplus-vt-cfg-url', aplusVtCfgUrl]
       });
-      aplus_queue.push({
-        action: 'aplus.setMetaInfo',
+      qt_queue.push({
+        action: 'qt.setMetaInfo',
         arguments: ['aplus-api-host', aplusApiHost]
       });
 

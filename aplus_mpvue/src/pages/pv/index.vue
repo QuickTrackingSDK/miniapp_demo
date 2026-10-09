@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import aplus from '../../utils/aplus';
+import '../../utils/aplus';
 
 
 export default {
@@ -28,7 +28,7 @@ export default {
   methods: {
     senPv() {
         console.log('手动pv事件按钮被点击了')
-        aplus.sendPV(
+        wx.qt.sendPV(
         {is_auto: false
         },{
         page_title: "页面一", //默认为pageConfig中的值，如果这里设置了，则为这里设置的值 (非必传)

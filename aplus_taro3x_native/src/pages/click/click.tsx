@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Taro from "_@tarojs_taro@3.3.17@@tarojs/taro";
-import { View, Image, Button } from "_@tarojs_components@3.3.17@@tarojs/components";
+import Taro from "@tarojs/taro";
+import { View, Image, Button } from "@tarojs/components";
 import { onAplusClk, record } from "../../utils/aplus_api";
 // import "./index.less";
 

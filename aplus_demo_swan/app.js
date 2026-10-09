@@ -73,15 +73,12 @@ const aplusConfig = {
   }
 };
 
-const {
-  AplusMini
-} = require("./node_modules/qt-miniprogram"); // const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
+const { initQTSDK } = require("./utils/qt_mini.umd.js"); // const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
 
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，页面直接使用 swan.qt / swan.qt_queue
+initQTSDK(aplusConfig);
 
-const aplus = AplusMini.create({ ...aplusConfig
-});
 App({
-  aplus,
   onLaunch: function () {
     if (!swan.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力');

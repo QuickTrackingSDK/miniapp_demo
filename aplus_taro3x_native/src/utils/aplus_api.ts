@@ -1,8 +1,10 @@
 
+declare const wx: any;
+
 const sendPV = function (args: object) {
-  const aplus_queue = window.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.sendPV',
+  const qt_queue = wx.qt_queue;
+  qt_queue.push({
+    action: 'qt.sendPV',
     arguments: [{
       is_auto: false
     }, {
@@ -12,27 +14,57 @@ const sendPV = function (args: object) {
 }
 
 const record = function (trackEventCode: string, eventType: string, eventParams: object): void {
-  const aplus_queue = window.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.record',
+  const qt_queue = wx.qt_queue;
+  console.log('yz-----qt_queue', trackEventCode, eventType, eventParams);
+
+  qt_queue.push({
+    action: 'qt.record',
     arguments: [trackEventCode, eventType, eventParams],
   });
 }
 
 const setMetaInfo = function(metaKey: string, metaValue: any): void {
-  const aplus_queue = window.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.setMetaInfo',
+  const qt_queue = wx.qt_queue;
+  qt_queue.push({
+    action: 'qt.setMetaInfo',
       arguments: [metaKey, metaValue]
     });
 }
 
 const appendMetaInfo = function(metaKey: string, metaValue: any): void {
-  const aplus_queue = window.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.appendMetaInfo',
+  const qt_queue = wx.qt_queue;
+  qt_queue.push({
+    action: 'qt.appendMetaInfo',
       arguments: [metaKey, metaValue]
     });
+}
+
+const onAplusClk = function (e: any) {
+  const qt_queue = wx.qt_queue;
+  const cp = getCurrentPages();
+  const cpl = cp.length;
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
+    arguments: ['onAplusClk', {
+      status: 'ready',
+      event: e,
+      context: cp[cpl - 1]
+    }],
+  });
+}
+
+const onAplusTouch = function (e: any) {
+  const qt_queue = wx.qt_queue;
+  const cp = getCurrentPages();
+  const cpl = cp.length;
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
+    arguments: ['onAplusTouch', {
+      status: 'ready',
+      event: e,
+      context: cp[cpl - 1]
+    }],
+  });
 }
 
 export {
@@ -40,4 +72,6 @@ export {
   record,
   setMetaInfo,
   appendMetaInfo,
+  onAplusClk,
+  onAplusTouch,
 }

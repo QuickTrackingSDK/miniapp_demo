@@ -1,4 +1,6 @@
 {
-  "enableAppxNg": true,
-  "enableNodeModuleBabelTransform": true
+  "format": 2,
+  "compileOptions": {
+    "enableNodeModuleBabelTransform": true
+  }
 }

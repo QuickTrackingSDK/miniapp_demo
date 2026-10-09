@@ -16,9 +16,9 @@ Page({
   sendPv() {
     console.log('yz-----sendPV');
     const {
-      aplus
+      qt
     } = tt;
-    aplus.sendPV({
+    qt.sendPV({
       is_auto: false
     }, {
       a: 1,

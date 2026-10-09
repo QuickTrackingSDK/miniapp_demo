@@ -30,61 +30,61 @@
 </template>
 
 <script>
-  import mpx, { createPage } from '@mpxjs/core'
-  import AplusSDK from '../../utils/aplusAdapter.js';
-  createPage({
+  import { createPage } from '@mpxjs/core'
+  import AplusSDK from '../../utils/aplusAdapter.js'
+createPage({
     data: {
-        puid: '',
-        up: {a: 1, b: 2},
-        gp: {'a': 1, 'b': 2, 'c': '3', from: 'uniapp'}
+      puid: '',
+      up: { a: 1, b: 2 },
+      gp: { 'a': 1, 'b': 2, 'c': '3', from: 'uniapp' }
     },
     methods: {
-        toJSONString(input) {
-            const keyMatcher = '([^",{}\\s]+?)';
-            const valMatcher = '(.,*)';
-            const matcher = new RegExp(`${keyMatcher}\\s*:\\s*${valMatcher}`, 'g');
-            const parser = (match, key, value) => `"${key}":${value}`
-            return input.replace(matcher, parser);
-        },
-        onGlobalPropertiesChanged (e) {
-            try {
-                console.log('yz--------json', e.detail);
-                let gp = this.toJSONString(e.detail.value);
-                console.log('yz------json', JSON.parse(gp));
-                this.setData({
-                    gp: JSON.parse(gp)
-                });
-            } catch (e) {}
-        },
-        registerGP () {
-            console.log('yz----', JSON.stringify(this.gp));
-            AplusSDK.registerGlobalProperties(this.gp);
-        },
-        onUserIdChanged(e) {
-            try {
-                this.setData({puid: e.detail.value});
-                console.log('puid', this.puid);
-            } catch(e){
-            }
-        },
-        setUserId() {
-            console.log('当前userid:', this.puid);
-            AplusSDK.setUserId(this.puid);
-        },
-        onUserPropertiesChanged(e) {
-            try {
-                console.log('yz--------json', e.detail);
-                let up = this.toJSONString(e.detail.value);
-                console.log('yz------json', JSON.parse(up));
-                this.setData({
-                    up: JSON.parse(up)
-                });
-            } catch (e) {}
-        },
-        setUserProfile() {
-            console.log('yz-----', JSON.stringify(this.up));
-            AplusSDK.sendEvent('$$_user_profile', this.up, 'OTHER')
+      toJSONString (input) {
+        const keyMatcher = '([^",{}\\s]+?)'
+        const valMatcher = '(.,*)'
+        const matcher = new RegExp(`${keyMatcher}\\s*:\\s*${valMatcher}`, 'g')
+        const parser = (match, key, value) => `"${key}":${value}`
+        return input.replace(matcher, parser)
+      },
+      onGlobalPropertiesChanged (e) {
+        try {
+          console.log('yz--------json', e.detail)
+          let gp = this.toJSONString(e.detail.value)
+          console.log('yz------json', JSON.parse(gp))
+          this.setData({
+            gp: JSON.parse(gp)
+          })
+        } catch (e) {}
+      },
+      registerGP () {
+        console.log('yz----', JSON.stringify(this.gp))
+        AplusSDK.registerGlobalProperties(this.gp)
+      },
+      onUserIdChanged (e) {
+        try {
+          this.setData({ puid: e.detail.value })
+          console.log('puid', this.puid)
+        } catch (e) {
         }
+      },
+      setUserId () {
+        console.log('当前userid:', this.puid)
+        AplusSDK.setUserId(this.puid)
+      },
+      onUserPropertiesChanged (e) {
+        try {
+          console.log('yz--------json', e.detail)
+          let up = this.toJSONString(e.detail.value)
+          console.log('yz------json', JSON.parse(up))
+          this.setData({
+            up: JSON.parse(up)
+          })
+        } catch (e) {}
+      },
+      setUserProfile () {
+        console.log('yz-----', JSON.stringify(this.up))
+        AplusSDK.sendEvent('$$_user_profile', this.up, 'OTHER')
+      }
     }
   })
 </script>

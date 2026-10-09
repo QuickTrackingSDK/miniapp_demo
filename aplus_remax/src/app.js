@@ -101,20 +101,20 @@ const aplusConfig = {
     // 设置每个页面的page_name
     pageConfig: {
       'pages/index/index': {
-  		  'pageName': 'home_page'
-  		},
+        'pageName': 'home_page'
+      },
       'pages/vt/vtdemo1': {
         'pageName': 'vtdemo1'
       },
-  		'pages/click/click': {
-  		  'pageName': 'clickevent_page'
-  		},
-  		'pages/pv/pv': {
-  			'pageName': 'manpv_page'
-  		},
-  		'pages/setting/index': {
-  			'pageName': 'setting_page'
-  		},
+      'pages/click/click': {
+        'pageName': 'clickevent_page'
+      },
+      'pages/pv/pv': {
+        'pageName': 'manpv_page'
+      },
+      'pages/setting/index': {
+        'pageName': 'setting_page'
+      },
       'pages/exposure/swiper': {
         'pageName': 'exp_page'
       },
@@ -137,7 +137,9 @@ const aplusConfig = {
   },
 };
 
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
+const { initQTSDK } = require('./utils/qt_mini.umd.js')
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，封装层直接使用 wx.qt / wx.qt_queue
+initQTSDK(aplusConfig)
 
 
 const App = props => props.children;

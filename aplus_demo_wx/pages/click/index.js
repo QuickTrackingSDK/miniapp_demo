@@ -8,11 +8,10 @@ Page({
       productId: '003'
     }
   },
-  clickEvent() {		
-      const { aplus }= getApp();
-      aplus.aplus_queue.push({
-        action: 'aplus.record',
-        arguments: ['test_man_clk', 'CLK', this.data.detail]
-      });
+  clickEvent() {
+    wx.qt_queue.push({
+      action: 'qt.record',
+      arguments: ['test_man_clk', 'CLK', this.data.detail]
+    });
   }
 });
