@@ -11,3 +11,6 @@ declare module '*.svg' {
 
 // 支付宝小程序全局对象
 declare const my: any;
+
+// 小程序全局页面栈 API
+declare const getCurrentPages: any;

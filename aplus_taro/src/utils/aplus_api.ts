@@ -1,6 +1,7 @@
 
 declare const wx: any;
 declare const tt: any;
+declare const getCurrentPages: any;
 
 // 微信 + 抖音双端：QT SDK 将 qt / qt_queue 挂载在平台全局对象上
 const getMpGlobal = () => {
@@ -47,9 +48,39 @@ const appendMetaInfo = function(metaKey: string, metaValue: any): void {
     });
 }
 
+const onAplusClk = function (e: any) {
+  const qt_queue = getMpGlobal().qt_queue;
+  const cp = getCurrentPages();
+  const cpl = cp.length;
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
+    arguments: ['onAplusClk', {
+      status: 'ready',
+      event: e,
+      context: cp[cpl - 1]
+    }],
+  });
+}
+
+const onAplusTouch = function (e: any) {
+  const qt_queue = getMpGlobal().qt_queue;
+  const cp = getCurrentPages();
+  const cpl = cp.length;
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
+    arguments: ['onAplusTouch', {
+      status: 'ready',
+      event: e,
+      context: cp[cpl - 1]
+    }],
+  });
+}
+
 export {
   sendPV,
   record,
   setMetaInfo,
   appendMetaInfo,
+  onAplusClk,
+  onAplusTouch,
 }

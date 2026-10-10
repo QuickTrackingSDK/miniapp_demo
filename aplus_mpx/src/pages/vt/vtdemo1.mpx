@@ -160,6 +160,11 @@
         scale: '79人购买',
         id: 1010
       }]
+    },
+    methods: {
+      onAplusClk: function (e) {
+        AplusSDK.onAplusClk(e)
+      }
     }
   })
 </script>

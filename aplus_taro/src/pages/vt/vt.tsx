@@ -6,6 +6,7 @@ import {
   SwiperItem,
   Image,
 } from "@tarojs/components";
+import { onAplusTouch } from "../../utils/aplus_api";
 import './vt.less'
 
 class Vt extends Component {
@@ -118,7 +119,7 @@ class Vt extends Component {
     const { swiperImg, indicatorDots, autoplay, interval, duration, lists } =
       this.state;
     return (
-      <View className="event-exposure">
+      <View className="event-exposure" onTouchStart={onAplusTouch}>
         <View className="exposure-auto">
           <View className="auto-title">场景1：轮播</View>
           <Swiper

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Taro from "@tarojs/taro";
 import { View, Image, Button } from "@tarojs/components";
+import { onAplusClk, record } from "../../utils/aplus_api";
 // import "./index.less";
 
 export default class Click extends Component {

@@ -29,6 +29,9 @@
       }
     },
     methods: {
+      onAplusClk: function (e) {
+        AplusSDK.onAplusClk(e)
+      },
       clickEvent: function() {
         console.log('yz-----abc');
 

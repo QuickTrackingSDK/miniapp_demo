@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Taro from "@tarojs/taro";
 import { View, Image, Button } from "@tarojs/components";
-import { record } from "../../utils/aplus_api";
+import { onAplusClk, record } from "../../utils/aplus_api";
 // import "./index.less";
 
 export default class Click extends Component {
@@ -10,22 +10,22 @@ export default class Click extends Component {
     this.state = {};
   }
 
-  componentWillMount() { }
+  componentWillMount() {}
 
-  componentDidMount() { }
+  componentDidMount() {}
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
-  componentDidShow() { }
+  componentDidShow() {}
 
-  componentDidHide() { }
+  componentDidHide() {}
 
   // 页面分享事件日志上报时，需注册该方法
-  onShareAppMessage() { }
+  onShareAppMessage() {}
 
   render() {
     return (
-      <View className="component">
+      <View className="component" onClick={onAplusClk}>
         <View
           className="container"
           style={{

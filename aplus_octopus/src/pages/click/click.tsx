@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Button } from "react-native";
-import { record } from '../../utils/aplus_api';
+import { onAplusClk, record } from '../../utils/aplus_api';
 // import "./index.less";
 
 export default class Click extends Component {
@@ -9,23 +9,23 @@ export default class Click extends Component {
     this.state = {};
   }
 
-  componentWillMount() { }
+  componentWillMount() {}
 
-  componentDidMount() { }
+  componentDidMount() {}
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
-  componentDidShow() { }
+  componentDidShow() {}
 
-  componentDidHide() { }
+  componentDidHide() {}
 
   // 页面分享事件日志上报时，需注册该方法
   // onShareAppMessage() {}
 
   render() {
     return (
-      <View className="component">
-        <View
+      <View className="component" onClick={onAplusClk}>
+        <View 
           className="container"
           style={{
             display: 'flex',
@@ -46,8 +46,8 @@ export default class Click extends Component {
             <View>商品ID: 003</View>
           </View>
         </View>
-
-        <View style={{ display: 'flex' }}>
+        
+        <View style={{display: 'flex'}}>
           <View className="wrapper auto-click" data-keyword="auto-click"><Button title={"点击购买(自动)"}></Button></View>
           <View className="wrapper"><Button title={"点击购买(手动)"} onPress={() => {
             record('/ClickToBuy', 'CLK', {

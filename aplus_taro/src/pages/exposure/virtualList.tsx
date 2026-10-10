@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Taro from "@tarojs/taro";
 import VirtualList from "@tarojs/components/virtual-list";
 import { View, Image } from "@tarojs/components";
+import { onAplusTouch } from "../../utils/aplus_api";
 // import "./index.less";
 
 function buildData(offset = 0) {
@@ -74,24 +75,24 @@ export default class ExposureVL extends Component {
     };
   }
 
-  componentWillMount() { }
+  componentWillMount() {}
 
-  componentDidMount() { }
+  componentDidMount() {}
 
-  componentWillUnmount() { }
+  componentWillUnmount() {}
 
-  componentDidShow() { }
+  componentDidShow() {}
 
-  componentDidHide() { }
+  componentDidHide() {}
 
   // 页面分享事件日志上报时，需注册该方法
-  onShareAppMessage() { }
+  onShareAppMessage() {}
 
   render() {
     const { data }: any = this.state;
     const dataLen = data.length;
     return (
-      <View className="component">
+      <View className="component" onTouchStart={onAplusTouch}>
         <View className="basic-view">自动曝光--虚拟列表</View>
         <View>
           <VirtualList

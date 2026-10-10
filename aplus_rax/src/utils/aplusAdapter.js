@@ -122,6 +122,21 @@ const clearGlobalProperties = () => {
   }
 };
 
+const onAplusClk = (e) => {
+  console.log(e, "eeee");
+  const qt_queue = getMpGlobal().qt_queue;
+  const cp = getCurrentPages();
+  const cpl = cp.length;
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
+    arguments: ['onAplusClk', {
+      status: 'ready',
+      event: e,
+      context: cp[cpl - 1]
+    }]
+  })
+}
+
 export default {
   sendPV,
   sendEvent,
@@ -130,5 +145,6 @@ export default {
   registerGlobalProperties,
   appendGlobalProperties,
   getGlobalProperties,
-  clearGlobalProperties
+  clearGlobalProperties,
+  onAplusClk
 };

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Taro from "@tarojs/taro";
 import { View, Image } from "@tarojs/components";
+import { onAplusTouch } from "../../utils/aplus_api";
 // import "./index.less";
 
 const image = {
@@ -92,6 +93,7 @@ export default class ExposureLL extends Component {
     return (
       <View
         className="component"
+        // onTouchStart={onAplusTouch}
       >
         <View className="basic-view">自动曝光--长列表</View>
         <View>
