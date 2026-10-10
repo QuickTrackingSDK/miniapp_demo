@@ -16,7 +16,7 @@ const aplusConfig = {
   metaInfo: {
     'appKey': trackerInfo.appKey,
     'appInfoId': trackerInfo.appInfoId,
-    'trackDomain': trackerInfo.aplusRhostV || 'log-api.aplus.emas-poc.com',
+    'trackDomain': trackerInfo.aplusRhostV,
 
 
     'DEBUG': true,

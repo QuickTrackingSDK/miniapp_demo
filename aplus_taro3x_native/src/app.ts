@@ -18,8 +18,8 @@ const random = getRandom(1, 1000);
 const aplusConfig = {
   metaInfo: {
     "appKey": trackerInfo.appKey,
-    "appInfoId": trackerInfo.appInfoId || "92522112133683",
-    'trackDomain': 'log-api.aplus.emas-poc.com',
+    "appInfoId": trackerInfo.appInfoId,
+    'trackDomain': '您的收数域名',
     "_anony_id": "testOpenId" + random,
     '_user_id': 'testUserId_' + random,
     "DEBUG": true, // 埋点调试使用

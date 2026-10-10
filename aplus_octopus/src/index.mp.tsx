@@ -14,10 +14,10 @@ import Setting from './pages/setting/setting';
 const aplusConfig = {
   metaInfo: {
     '_anony_id': 'test_id_111',
-    'appId': 'wx9e13f4e9923236ab', //和project.config.json里的appid保持一致，必填
+    'appId': '您的appid', //和project.config.json里的appid保持一致，必填
     // 'aplus-waiting':'MAN', //关闭自动PV,
     'DEBUG': true,  // 埋点调试使用
-    'trackDomain': 'log-api.aplus.emas-poc.com', //pv日志发送去向，填域名，必填
+    'trackDomain': '您的收数域名', //pv日志发送去向，填域名，必填
 
     // 全局属性
     'globalproperty': {

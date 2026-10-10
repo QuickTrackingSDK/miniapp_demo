@@ -19,7 +19,7 @@ const aplusConfig = {
     'appKey': trackerInfo.appKey,
     //必填
     'appInfoId': trackerInfo.appInfoId || 'anAppInfoId',
-    'trackDomain': trackerInfo.aplusRhostV || 'log-api-daily.aplus.emas-poc.com',
+    'trackDomain': trackerInfo.aplusRhostV,
     //必填 收数域名
     'DEBUG': true,
     //调试模式 打印sdk日志
