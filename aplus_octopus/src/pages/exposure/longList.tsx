@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View
 } from "react-native";
-import { onAplusTouch } from '../../utils/aplus_api';
 // import "./index.less";
 
 function buildData (offset = 0) {
@@ -59,7 +58,6 @@ export default class ExposureLL extends Component {
     return (
       <View 
         className="component" 
-        // onTouchStart={onAplusTouch}
       >
         <View className="basic-view">自动曝光--长列表</View>
         <View>

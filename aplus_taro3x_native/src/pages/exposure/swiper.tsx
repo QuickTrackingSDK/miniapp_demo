@@ -33,7 +33,6 @@ export default class Exposure extends Component {
     return (
       <View
         className="component"
-        // onTouchStart={onAplusTouch}
       >
         <View className="basic-view">自动曝光--轮播</View>
         <View>

@@ -11,18 +11,17 @@ import {
   SwiperItem,
   Image,
 } from "@tarojs/components";
-import { onAplusTouch } from '../../utils/aplus_api';
 // import "./index.less";
 
-function buildData (offset = 0) {
+function buildData(offset = 0) {
   return Array(10).fill(0).map((_, i) => i + offset);
 }
 
 const Row = React.memo(({ id, index, style, data }: any) => {
   return (
-    <View 
-      id={id} 
-      className="ListItem" 
+    <View
+      id={id}
+      className="ListItem"
       style={{
         ...style,
         display: 'flex',
@@ -53,32 +52,31 @@ export default class Exposure extends Component {
     };
   }
 
-  componentWillMount() {}
+  componentWillMount() { }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
-  componentWillUnmount() {}
+  componentWillUnmount() { }
 
-  componentDidShow() {}
+  componentDidShow() { }
 
-  componentDidHide() {}
+  componentDidHide() { }
 
   // 页面分享事件日志上报时，需注册该方法
-  onShareAppMessage() {}
+  onShareAppMessage() { }
 
 
   render() {
-    const { background, data }:any = this.state;
+    const { background, data }: any = this.state;
     const dataLen = data.length;
     return (
-      <View 
-        className="component" 
-        onTouchStart={onAplusTouch}
+      <View
+        className="component"
       >
         <View>
           <View style={{
             // height: '120vh'
-          }}/>
+          }} />
           <View className="basic-view">自动曝光--轮播</View>
           <View>
             <Swiper autoplay indicatorDots>
@@ -112,10 +110,10 @@ export default class Exposure extends Component {
           <View className="basic-view">自动曝光--虚拟列表</View>
           <View>
             <VirtualList
-              height={500} 
-              width='100%' 
-              itemData={data} 
-              itemCount={dataLen} 
+              height={500}
+              width='100%'
+              itemData={data}
+              itemCount={dataLen}
               itemSize={100}
             >
               {Row}

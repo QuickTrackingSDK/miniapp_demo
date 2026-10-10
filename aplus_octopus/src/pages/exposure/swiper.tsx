@@ -58,7 +58,6 @@ export default class Exposure extends Component {
     return (
       <View 
         className="component" 
-        // onTouchStart={onAplusTouch}
       >
         <View className="basic-view">手动曝光</View>
         {this.state.module}

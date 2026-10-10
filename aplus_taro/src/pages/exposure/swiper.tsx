@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Taro from "@tarojs/taro";
 import { View, Swiper, SwiperItem, Image } from "@tarojs/components";
-import { onAplusTouch } from "../../utils/aplus_api";
 // import "./index.less";
 
 export default class Exposure extends Component {
@@ -34,7 +33,6 @@ export default class Exposure extends Component {
     return (
       <View
         className="component"
-        // onTouchStart={onAplusTouch}
       >
         <View className="basic-view">自动曝光--轮播</View>
         <View>
