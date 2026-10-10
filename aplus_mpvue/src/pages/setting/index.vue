@@ -26,7 +26,7 @@
 <script>
 
 import json5 from 'json5';
-import aplus from '../../utils/aplus';
+import '../../utils/aplus';
 
 export default {
   data () {
@@ -48,18 +48,18 @@ export default {
 
     setGP() {
 
-        aplus.setMetaInfo('globalproperty', JSON.parse(this.globalPropertyMessage))  
+        wx.qt.setMetaInfo('globalproperty', JSON.parse(this.globalPropertyMessage))  
     },
 
     appendGP() {
 
-        aplus.appendMetaInfo('globalproperty', JSON.parse(this.globalPropertyMessage))
+        wx.qt.appendMetaInfo('globalproperty', JSON.parse(this.globalPropertyMessage))
     },
 
     logIn() {
 
-        aplus.setMetaInfo("_user_id", this.userIdMessage)
-        aplus.record('$$_user_profile', 'OTHER', JSON.parse(this.userProfileMessage))
+        wx.qt.setMetaInfo("_user_id", this.userIdMessage)
+        wx.qt.record('$$_user_profile', 'OTHER', JSON.parse(this.userProfileMessage))
     }
   },
 

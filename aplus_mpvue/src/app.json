@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/logs/main",
     "pages/click/main",
     "pages/pv/main",
     "pages/custom/main",

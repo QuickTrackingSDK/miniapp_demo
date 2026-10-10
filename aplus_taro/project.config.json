@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "aplus_taro3x",
   "description": "aplus_taro3x",
-  "appid": "wx9e13f4e9923236ab",
+  "appid": "wxf8fdb704d952f691",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -39,8 +39,19 @@
     "disableUseStrict": false,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "minifyWXML": true
+    "minifyWXML": true,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true
   },
   "compileType": "miniprogram",
-  "condition": {}
+  "condition": {},
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {}
 }

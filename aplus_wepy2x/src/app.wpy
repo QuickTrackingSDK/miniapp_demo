@@ -12,7 +12,7 @@
 <script>
 import wepy from '@wepy/core';
 import eventHub from './common/eventHub';
-import aplus from './utils/aplus.js';
+import './utils/aplus.js';
 
 
 wepy.app({

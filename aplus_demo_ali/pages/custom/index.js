@@ -26,8 +26,8 @@ _Page({
     },
 
     otherEvent() {
-        const { aplus } = getApp();
-        aplus.record("test_other_ekv", "OTHER", {
+        const qt = my.qt;
+        qt.record("test_other_ekv", "OTHER", {
             a: 1,
             b: 2,
             c: 3

@@ -1,5 +1,5 @@
 <script>
-import aplus from './utils/aplus';
+import './utils/aplus';
 export default {
   created () {
     // 调用API从本地缓存中获取数据
@@ -10,8 +10,8 @@ export default {
      * 百度：mpvue === swan, mpvuePlatform === 'swan'
      * 支付宝(蚂蚁)：mpvue === my, mpvuePlatform === 'my'
      */
-    aplus.record('test_clk', 'CLK', {})
-    aplus.sendPV({is_auto: false}, {a: 1})
+    wx.qt.record('test_clk', 'CLK', {})
+    wx.qt.sendPV({is_auto: false}, {a: 1})
 
     let logs
     if (mpvuePlatform === 'my') {

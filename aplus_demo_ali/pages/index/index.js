@@ -17,7 +17,7 @@ _Page({
         appKe: "",
         appInfoId: ""
     },
-    onLoad: function() {},
+    onLoad: function () { },
 
     handlerDomainChange(e) {
         this.setData({
@@ -77,8 +77,8 @@ _Page({
             aplusVtCfgUrl,
             appKey,
             appInfoId
-        }); // const { aplus }= getApp();
-        // aplus.setMetaInfo('appKey', appKey);
+        }); // const { qt }= getApp();
+        // qt.setMetaInfo('appKey', appKey);
         // wx.showModal({
         //   title: '成功',
         //   content: '更新配置成功，请重新进入小程序以生效配置',
@@ -92,7 +92,7 @@ _Page({
 
     onPullDownRefresh() {
         console.log("refresh");
-        setTimeout(function() {
+        setTimeout(function () {
             _my.stopPullDownRefresh();
         }, 1000);
     },

@@ -16,9 +16,9 @@ Page({
 
   otherEvent() {
     const {
-      aplus
+      qt
     } = tt;
-    aplus.record('test_other_ekv', 'OTHER', {
+    qt.record('test_other_ekv', 'OTHER', {
       a: 1,
       b: 2,
       c: 3

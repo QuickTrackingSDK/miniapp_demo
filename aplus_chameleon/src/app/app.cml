@@ -8,10 +8,8 @@
   const aplusConfig = {
     metaInfo: {
       '_anony_id': 'test_id_111',
-      'appId': 'wx9e13f4e9923236ab', //和project.config.json里的appid保持一致，必填
-      // 'aplus-waiting':'MAN', //关闭自动PV,
       'DEBUG': true,  // 埋点调试使用
-      'aplus-rhost-v': 'log-api.aplus.emas-poc.com', //pv日志发送去向，填域名，必填
+      'trackDomain': '您的收数域名', //pv日志发送去向，填域名，必填
 
       // 全局属性
       'globalproperty': {
@@ -55,13 +53,14 @@
     }
   }
 
-  const aplus = require('../utils/aplus_mini_cloud_um')(aplusConfig)
+  const { initQTSDK } = require('../utils/qt_mini.umd.js')
+  // initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，封装层直接从平台全局对象获取
+  initQTSDK(aplusConfig)
 
   class App {
     data = {
       routerConfig
     }
-    aplus = aplus
     created(res) {
     }
   }

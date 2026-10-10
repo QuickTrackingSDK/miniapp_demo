@@ -27,21 +27,21 @@ _Page({
     registerGP() {
         console.log("yz----", JSON.stringify(this.data.gp)); // UmengSDK.registerGlobalProperties(this.gp);
 
-        const { aplus } = getApp();
-        aplus.setMetaInfo("globalproperty", { ...this.data.gp });
+        const qt = my.qt;
+        qt.setMetaInfo("globalproperty", { ...this.data.gp });
     },
 
     setUserProfile() {
         console.log("当前用户属性：", JSON.stringify(this.data.up));
-        const { aplus } = getApp();
-        console.log(aplus, "aplus");
-        aplus.record("$$_user_profile", "OTHER", { ...this.data.up });
+        const qt = my.qt;
+        console.log(qt, "qt");
+        qt.record("$$_user_profile", "OTHER", { ...this.data.up });
     },
 
     setUserId() {
-        const { aplus } = getApp();
+        const qt = my.qt;
         console.log("当前userid:", this.data.puid);
-        aplus.setMetaInfo("_user_id", this.data.puid);
+        qt.setMetaInfo("_user_id", this.data.puid);
     },
 
     onGlobalPropertiesChanged(event) {
@@ -52,7 +52,7 @@ _Page({
             this.setData({
                 gp: JSON.parse(gp)
             });
-        } catch (e) {}
+        } catch (e) { }
     },
 
     onUserPropertiesChanged(event) {
@@ -64,7 +64,7 @@ _Page({
             this.setData({
                 up: JSON.parse(up)
             });
-        } catch (e) {}
+        } catch (e) { }
     },
 
     onUserIdChanged(event) {
@@ -72,7 +72,7 @@ _Page({
             this.setData({
                 puid: event.detail.value
             });
-        } catch (e) {}
+        } catch (e) { }
     },
 
     toJSONString(input) {

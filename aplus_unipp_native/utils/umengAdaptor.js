@@ -2,54 +2,53 @@
  * umeng H5/小程序/iOS/Android 四端sdk适配层
  */
 // #ifdef MP
-import aplusVar from './aplus.js';
+// 触发 QT SDK 初始化（内部已将 qt / qt_queue 挂载到平台全局对象上）
+import './aplus.js';
 // #endif
 
 
 export default {
-	sendPV: function(params) {
+	sendPV: function (params) {
 		// #ifdef APP
 		// 如果是APP环境，页面浏览事件区分为onPageStart 和 onPageEnd，具体埋点请参照 pages/page1/page1.vue内代码
 		// #endif 
-		
+
 		// #ifdef MP
-		const {aplus_queue } = aplusVar;
-		aplus_queue.push({
-			action: 'aplus.sendPV',
+		wx.qt_queue.push({
+			action: 'qt.sendPV',
 			arguments: [
-				{is_auto: false},
-				{...params}
+				{ is_auto: false },
+				{ ...params }
 			]
 		})
 		// #endif
-		
+
 		// #ifdef H5
-		const {aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.sendPV',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.sendPV',
 			arguments: [
-				{is_auto: false},
-				{...params}
+				{ is_auto: false },
+				{ ...params }
 			]
 		})
 		// #endif
 	},
-	
-	sendEvent: function(eventId, params, eventType = 'CLK', method = 'POST') {
+
+	sendEvent: function (eventId, params, eventType = 'CLK', method = 'POST') {
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
-		console.log('yz-----aplus_queue', eventId, params, eventType);
-		aplus_queue.push({
-			'action': 'aplus.record',
-			'arguments': [eventId, eventType, {...params}, method]
+		console.log('yz-----qt_queue', eventId, params, eventType);
+		wx.qt_queue.push({
+			'action': 'qt.record',
+			'arguments': [eventId, eventType, { ...params }, method]
 		})
 		// #endif
-		
+
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.record',
-			arguments: [eventId, eventType, {...params}, method]
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.record',
+			arguments: [eventId, eventType, { ...params }, method]
 		})
 		// #endif
 
@@ -65,8 +64,8 @@ export default {
 		UmengAnalytics.onEventObject(eventId, JSON.stringify(params));
 		// #endif
 	},
-	
-	registerGlobalProperties: function(params) {
+
+	registerGlobalProperties: function (params) {
 		// #ifdef APP
 		const UmengAnalytics = uni.requireNativePlugin('UmengAnalytics')
 		/**
@@ -76,125 +75,119 @@ export default {
 		const value = JSON.stringify(params);
 		UmengAnalytics.registerGlobalProperties(value);
 		// #endif
-		
+
 		// #ifdef H5
-		const { aplus_queue } = window;
+		const { qt_queue } = window;
 		/**
 		 * @example:
-		 *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
 		 * @params 一级平铺自定义全局属性键值对，不支持嵌套
 		 */
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		});
 		// #endif
-		
+
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
 		/**
 		 * @example:
-		 *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
+		 *  qt_queue.push({action: 'qt.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
 		 * @params 一级平铺自定义全局属性键值对，不支持嵌套
 		 */
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		wx.qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		});
 		// #endif
 	},
-	
+
 	// #ifdef MP | H5
-	appendGlobalProperties: function(params) {
+	appendGlobalProperties: function (params) {
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.appendMetaInfo',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.appendMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		})
 		// #endif
-		
+
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
-		aplus_queue.push({
-			action: 'aplus.appendMetaInfo',
+		wx.qt_queue.push({
+			action: 'qt.appendMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		})
 		// #endif
 	},
 	// #endif
-	getGlobalProperties: function() {
+	getGlobalProperties: function () {
 		// #ifdef APP
 		const UmengAnalytics = uni.requireNativePlugin('UmengAnalytics')
 		return UmengAnalytics.getGlobalProperties();
 		// #endif
-		
+
 		// #ifdef H5
-		const { aplus } = window;
-		return aplus.getMetaInfo('globalproperty');
+		const { qt } = window;
+		return qt.getMetaInfo('globalproperty');
 		// #endif
 
 		// #ifdef MP
-		const { aplus } = aplusVar;
-		return aplus.getMetaInfo('globalproperty');
+		return wx.qt.getMetaInfo('globalproperty');
 		// #endif
 	},
-	
-	clearGlobalProperties: function() {
+
+	clearGlobalProperties: function () {
 		// #ifdef APP
 		const UmengAnalytics = uni.requireNativePlugin('UmengAnalytics')
 		UmengAnalytics.clearGlobalProperties();
 		// #endif
-		
+
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['globalproperty', {}]
 		})
 		// #endif
-		
+
 		// #ifdef MP
-		const { aplus_queue } = aplusVar;
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		wx.qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['globalproperty', {}]
 		})
 		// #endif
 	},
 
 	// #ifdef APP
-	unregisterGlobalProperty: function(key) {
+	unregisterGlobalProperty: function (key) {
 		const UmengAnalytics = uni.requireNativePlugin('UmengAnalytics')
 		/**
 		 * @@description 删除某个全局属性接口
 		 * @param {key} 全局属性名 字符串类型   
-		 */ 
-		UmengAnalytics.unregisterGlobalProperty(key);	
+		 */
+		UmengAnalytics.unregisterGlobalProperty(key);
 	},
 	// #endif 
-	setUserId: function(puid, organization = 'testOrganization') {
+	setUserId: function (puid, organization = 'testOrganization') {
 		// #ifdef APP
 		console.log('yz---------', puid, organization)
 		const UmengAnalytics = uni.requireNativePlugin('UmengAnalytics')
 		UmengAnalytics.onProfileSignIn(puid, organization)
 		// #endif
-		
+
 		// #ifdef H5
-		const {aplus_queue} = window;
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['_user_id', puid]
 		})
 		// #endif
-		
+
 		// #ifdef MP
-		const {aplus_queue} = aplusVar;
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		wx.qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['_user_id', puid]
 		})
 		// #endif
 	}
-	
+
 }

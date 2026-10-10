@@ -21,7 +21,7 @@
 import UmengSDK from '../../../utils/umengAdaptor'
 export default {
     onShow() {
-        window.aplus.updatePageProperties('click_page', {
+        window.qt.updatePageProperties('click_page', {
             click_page_cusp1: 1
         });
 
@@ -48,9 +48,8 @@ export default {
         },
         // #ifdef MP
         onAplusClk: function (e) {
-            // const { aplus_queue } = this.$aplus;
-            wx.aplus_queue.push({
-                action: 'aplus.aplus_pubsub.publish',
+            wx.qt_queue.push({
+                action: 'qt.qt_pubsub.publish',
                 arguments: ['onAplusClk', {
                     status: 'ready',
                     event: e,

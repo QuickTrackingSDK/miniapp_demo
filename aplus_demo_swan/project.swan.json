@@ -1,5 +1,5 @@
 {
-    "appid": "wxb52ceeb7d2205fcd",
+    "appid": "17767960",
     "cloudfunctionRoot": "cloudfunctions/",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "compilation-args": {
@@ -8,10 +8,14 @@
                 "ignore": []
             },
             "enhance": false,
-            "ignoreTransJs": false
+            "ignoreTransJs": false,
+            "quickPreview": true
         },
         "options": [],
-        "selected": -2
+        "selected": -2,
+        "forceChanged": {
+            "quickPreview": true
+        }
     },
     "condition": {
         "conversation": {
@@ -76,8 +80,8 @@
     },
     "swan": {
         "baiduboxapp": {
-            "extensionJsVersion": "1.21.2",
-            "swanJsVersion": "3.360.26"
+            "swanJsVersion": "3.970.2",
+            "extensionJsVersion": "1.21.2"
         }
     }
 }

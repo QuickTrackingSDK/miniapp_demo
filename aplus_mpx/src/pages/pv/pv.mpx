@@ -21,10 +21,10 @@
     data: {
     },
     methods: {
-        sendPv: function () {
-            console.log('yz-----sendPV')
-            aplusAdapter.sendPV({ a: 1, b: 2, c: 3, pageName: 'manpv_page_custom' })
-        }
+      sendPv: function () {
+        console.log('yz-----sendPV')
+        aplusAdapter.sendPV({ a: 1, b: 2, c: 3, pageName: 'manpv_page_custom' })
+      }
     }
   })
 </script>

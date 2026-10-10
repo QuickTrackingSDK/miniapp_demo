@@ -1,8 +1,8 @@
 
 const sendPV = function (args) {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.sendPV',
+  const qt_queue = wx.qt_queue;
+  qt_queue.push({
+    action: 'qt.sendPV',
     arguments: [{
       is_auto: false
     }, {
@@ -12,35 +12,35 @@ const sendPV = function (args) {
 }
 
 const record = function (trackEventCode, eventType, eventParams) {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.record',
+  const qt_queue = wx.qt_queue;
+  qt_queue.push({
+    action: 'qt.record',
     arguments: [trackEventCode, eventType, eventParams],
   });
 }
 
-const setMetaInfo = function(metaKey, metaValue) {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.setMetaInfo',
-      arguments: [metaKey, metaValue]
-    });
+const setMetaInfo = function (metaKey, metaValue) {
+  const qt_queue = wx.qt_queue;
+  qt_queue.push({
+    action: 'qt.setMetaInfo',
+    arguments: [metaKey, metaValue]
+  });
 }
 
-const appendMetaInfo = function(metaKey, metaValue) {
-  const aplus_queue = getApp().aplus.aplus_queue;
-  aplus_queue.push({
-    action: 'aplus.appendMetaInfo',
-      arguments: [metaKey, metaValue]
-    });
+const appendMetaInfo = function (metaKey, metaValue) {
+  const qt_queue = wx.qt_queue;
+  qt_queue.push({
+    action: 'qt.appendMetaInfo',
+    arguments: [metaKey, metaValue]
+  });
 }
 
 const onAplusClk = function (e) {
-  const aplus_queue = getApp().aplus.aplus_queue;
+  const qt_queue = wx.qt_queue;
   const cp = getCurrentPages();
   const cpl = cp.length;
-  aplus_queue.push({
-    action: 'aplus.aplus_pubsub.publish',
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
     arguments: ['onAplusClk', {
       status: 'ready',
       event: e,
@@ -50,11 +50,11 @@ const onAplusClk = function (e) {
 }
 
 const onAplusTouch = function (e) {
-  const aplus_queue = getApp().aplus.aplus_queue;
+  const qt_queue = wx.qt_queue;
   const cp = getCurrentPages();
   const cpl = cp.length;
-  aplus_queue.push({
-    action: 'aplus.aplus_pubsub.publish',
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
     arguments: ['onAplusTouch', {
       status: 'ready',
       event: e,

@@ -68,6 +68,8 @@
 </template>
 
 <script>
+// #ifdef H5
+// 浏览器嗅探仅 H5 端可用：小程序运行环境无 navigator，模块初始化即执行会报错白屏
 const browser = {
 	versions: function () {
 		const u = navigator.userAgent,
@@ -101,27 +103,42 @@ const browser = {
 	}(),
 	language: (navigator.browserLanguage || navigator.language).toLowerCase()
 };
+// #endif
+// #ifndef H5
+// 小程序端降级：用 uni 系统信息提供 iOS/Android 判断（消费点 browser.versions.ios/android 不变）
+const browser = {
+	versions: function () {
+		const platform = uni.getSystemInfoSync().platform || '';
+		return {
+			mobile: true,
+			ios: platform === 'ios',
+			android: platform === 'android'
+		};
+	}(),
+	language: 'zh-cn'
+};
+// #endif
 export default {
 	onShow() {
 		// #ifdef H5
-		aplus_queue.push({
-			action: 'aplus.aplus_pubsub.subscribe',
+		qt_queue.push({
+			action: 'qt.qt_pubsub.subscribe',
 			arguments: [
-				'aplusReady',
+				'qtReady',
 				function (status) {
 					if (status === 'complete') {
-						window.aplus.updatePageProperties(
+						window.qt.updatePageProperties(
 							"h1_page",
 							{
 								cusp_h1_p: 'h1的事件属性',
 							}
 						);
 
-						console.log('h1页面属性：', window.aplus.getPageProperties('h1_page'));
-						console.log("事件属性 cusp_h1_p ==", window.aplus.getPageProperty("h1_page", "cusp_h1_p",
+						console.log('h1页面属性：', window.qt.getPageProperties('h1_page'));
+						console.log("事件属性 cusp_h1_p ==", window.qt.getPageProperty("h1_page", "cusp_h1_p",
 							"cusp"));
-						console.log("事件属性 transp_from_h2 ==", window.aplus.getPageProperty("h1_page", "transp_from_h2", "transp"));
-						window.aplus.sendPV({
+						console.log("事件属性 transp_from_h2 ==", window.qt.getPageProperty("h1_page", "transp_from_h2", "transp"));
+						window.qt.sendPV({
 							is_auto: false
 						}, {});
 					}
@@ -130,17 +147,17 @@ export default {
 		})
 
 		// 同步引入写法
-		// aplus.updatePageProperties({
+		// qt.updatePageProperties({
 		// 	properties: {
 		// 		cusp_h1_p: '首页的事件属性',
 		// 	},
 		// 	page_name: "h1_page",
 		// });
 
-		// console.log('首页的页面属性：', aplus.getPageProperties('h1_page'));
-		// console.log("事件属性 cusp_h1_p ==", aplus.getPageProperty("h1_page", "cusp_h1_p", "cusp"));
-		// console.log("事件属性 transp_from_page1 ==", aplus.getPageProperty("h1_page", "transp_from_page1", "transp"));
-		// aplus.sendPV({is_auto: false}, {page_name: "h1_page"});
+		// console.log('首页的页面属性：', qt.getPageProperties('h1_page'));
+		// console.log("事件属性 cusp_h1_p ==", qt.getPageProperty("h1_page", "cusp_h1_p", "cusp"));
+		// console.log("事件属性 transp_from_page1 ==", qt.getPageProperty("h1_page", "transp_from_page1", "transp"));
+		// qt.sendPV({is_auto: false}, {page_name: "h1_page"});
 		// #endif
 	},
 
@@ -220,28 +237,24 @@ export default {
 				appInfoId
 			});
 
-			const {
-				aplus_queue
-			} = this.$aplus;
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
+			const qt_queue = wx.qt_queue;
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 				arguments: ['appKey', appKey]
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 				arguments: ['appInfoId', appInfoId]
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
-				arguments: ['aplus-rhost-v', aplusRhostV]
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
+				arguments: ['trackDomain', aplusRhostV]
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
-				arguments: ['aplus-vt-cfg-url', aplusVtCfgUrl]
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 			});
-			aplus_queue.push({
-				action: 'aplus.setMetaInfo',
-				arguments: ['aplus-api-host', aplusApiHost]
+			qt_queue.push({
+				action: 'qt.setMetaInfo',
 			});
 
 			uni.showModal({
@@ -265,7 +278,7 @@ export default {
 			})
 		},
 		navigateToClick() {
-			window.aplus.updateNextPageProperties({
+			window.qt.updateNextPageProperties({
 				"transp_from_h1": "h1给h2的透传属性",
 			});
 			uni.navigateTo({
@@ -298,7 +311,7 @@ export default {
 			})
 		},
 		navigateToH2WithHole() {
-			window.aplus.updateNextPageProperties({
+			window.qt.updateNextPageProperties({
 				"transp_from_h1": "h1给h2的透传属性",
 			});
 

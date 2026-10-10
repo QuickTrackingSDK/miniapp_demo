@@ -15,11 +15,8 @@ Page({
   },
 
   otherEvent() {
-    const {
-      aplus
-    } = getApp();
-    aplus.aplus_queue.push({
-      action: 'aplus.record',
+    jd.qt_queue.push({
+      action: 'qt.record',
       arguments: ['test_other_ekv', 'OTHER', {
         a: 1,
         b: 2,

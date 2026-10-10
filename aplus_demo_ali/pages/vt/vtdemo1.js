@@ -120,7 +120,7 @@ _Page({
     },
 
     onAplusClk(e) {
-        const { aplus } = getApp(); // console.log(aplus, 'aplus')
-        // aplus.aplus_pubsub('ready', e, this)
+        const qt = my.qt; // console.log(qt, 'qt')
+        // qt.qt_pubsub.publish('ready', e, this)
     }
 });

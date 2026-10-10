@@ -19,11 +19,7 @@ const aplusConfig = {
     metaInfo: {
         // POC环境
         appKey: trackerInfo.appKey,
-        appInfoId: trackerInfo.appInfoId,
         trackDomain: trackerInfo.aplusRhostV,
-        "aplus-vt-cfg-url":
-            trackerInfo.aplusVtCfgUrl,
-        // 已发布的配置地址
         DEBUG: true,
         _anony_id: "testOpenId_" + random,
         // 'testOpenId', //必填

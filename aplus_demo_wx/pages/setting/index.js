@@ -18,8 +18,8 @@ Page({
   },
   registerGP() {
     console.log('yz----', JSON.stringify(this.data.gp))
-    getApp().aplus.aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    wx.qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', {
         ...this.data.gp
       }]
@@ -27,19 +27,16 @@ Page({
   },
   setUserProfile() {
     console.log('当前用户属性：', JSON.stringify(this.data.up));
-    getApp().aplus.aplus_queue.push({
-      action: 'aplus.record',
+    wx.qt_queue.push({
+      action: 'qt.record',
       arguments: ['$$_user_profile', 'OTHER', {
         ...this.data.up
       }]
     })
   },
   setUserId() {
-    const {
-      aplus
-    } = getApp();
-    getApp().aplus.aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    wx.qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', this.data.puid]
     })
   },
@@ -51,7 +48,7 @@ Page({
       this.setData({
         gp: JSON.parse(gp)
       });
-    } catch (e) {}
+    } catch (e) { }
   },
   onUserPropertiesChanged(event) {
     // console.log('yz--------event', JSON.parse(event.detail.value));
@@ -62,12 +59,12 @@ Page({
       this.setData({
         up: JSON.parse(up)
       });
-    } catch (e) {}
+    } catch (e) { }
   },
   onUserIdChanged(event) {
     try {
-      this.setData({puid: event.detail.value});
-    } catch(e){}
+      this.setData({ puid: event.detail.value });
+    } catch (e) { }
   },
   toJSONString(input) {
     const keyMatcher = '([^",{}\\s]+?)';

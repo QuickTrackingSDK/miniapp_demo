@@ -10,7 +10,7 @@
 
 <script>
 
-import aplus from '../../utils/aplus';
+import '../../utils/aplus';
 
 export default {
   data () {
@@ -28,7 +28,7 @@ export default {
 
     navigateToClick() {
         
-        aplus.record('test_other_ekv', 'OTHER', {
+        wx.qt.record('test_other_ekv', 'OTHER', {
         x: '111',
         y: '222',
         z: 333,

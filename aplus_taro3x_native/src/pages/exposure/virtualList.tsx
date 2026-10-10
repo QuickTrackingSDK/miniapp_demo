@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Taro from "_@tarojs_taro@3.3.17@@tarojs/taro";
-import VirtualList from "_@tarojs_components@3.3.17@@tarojs/components/virtual-list";
-import { View, Image } from "_@tarojs_components@3.3.17@@tarojs/components";
+import Taro from "@tarojs/taro";
+import VirtualList from "@tarojs/components/virtual-list";
+import { View, Image } from "@tarojs/components";
 // import "./index.less";
 
 function buildData(offset = 0) {

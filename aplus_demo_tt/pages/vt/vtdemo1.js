@@ -82,9 +82,9 @@ Page({
 
   onAplusClk(e) {
     const {
-      aplus
-    } = tt; // console.log(aplus, 'aplus')
-    // aplus.aplus_pubsub('ready', e, this)
+      qt
+    } = tt; // console.log(qt, 'qt')
+    // qt.qt_pubsub.publish('ready', e, this)
   }
 
 });

@@ -16,10 +16,9 @@ function getRandom(min, max) {
 const random = getRandom(1, 1000);
 const aplusConfig = {
   metaInfo: {
-    'appKey': trackerInfo.appKey || 'test_appKey',
+    'appKey': trackerInfo.appKey,
     //必填
-    'appInfoId': trackerInfo.appInfoId || 'anAppInfoId',
-    'aplus-rhost-v': trackerInfo.aplusRhostV || 'log-api-daily.aplus.emas-poc.com',
+    'trackDomain': trackerInfo.aplusRhostV,
     //必填 收数域名
     'DEBUG': true,
     //调试模式 打印sdk日志
@@ -84,10 +83,11 @@ const aplusConfig = {
   }
 };
 
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig);
+const { initQTSDK } = require('./utils/qt_mini.umd.js');
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，页面直接使用 jd.qt / jd.qt_queue
+initQTSDK(aplusConfig);
 
 App({
-  aplus,
   onLaunch: function () {
     this.globalData = {};
   }

@@ -3,14 +3,14 @@
  * 可移步至./swiper、./longList、./virtualList
  */
 import React, { Component } from 'react';
-import Taro from "_@tarojs_taro@3.3.17@@tarojs/taro";
-import VirtualList from '_@tarojs_components@3.3.17@@tarojs/components/virtual-list';
+import Taro from "@tarojs/taro";
+import VirtualList from '@tarojs/components/virtual-list';
 import {
   View,
   Swiper,
   SwiperItem,
   Image,
-} from "_@tarojs_components@3.3.17@@tarojs/components";
+} from "@tarojs/components";
 
 function buildData (offset = 0) {
   return Array(10).fill(0).map((_, i) => i + offset);

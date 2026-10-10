@@ -13,17 +13,10 @@ const random = getRandom(1, 1000);
 
 const aplusConfig = {
   metaInfo: {
-    "appKey": trackerInfo.appKey || "skuu0fdm4ksl236ladytzi1o",
-    "appInfoId": trackerInfo.appInfoId || "92522112133683",
-    "aplus-rhost-v": trackerInfo.aplusRhostV || "log-api.aplus.emas-poc.com", //日志发送去向，填域名，必填
-    "aplus-vt-cfg-url":
-      trackerInfo.aplusVtCfgUrl ||
-      "https://alidt.alicdn.com/alilog/vt/miniapp/skuu0fdm4ksl236ladytzi1o.json", // 已发布的配置地址
-    "aplus-api-host": trackerInfo.aplusApiHost || 'pre.aplus.emas-poc.com', // 采集管理系统域名，用于可视化埋点验证
+    "appKey": trackerInfo.appKey,
+    "trackDomain": trackerInfo.aplusRhostV, //日志发送去向，填域名，必填
     "_anony_id": "testOpenId" + random,
     '_user_id': 'testUserId_' + random,
-    // "appId": "wx9e13f4e9923236ab", //和project.config.json里的appid保持一致，必填
-    // 'aplus-waiting':'MAN', //关闭自动PV,
     "DEBUG": true, // 埋点调试使用
     // 全局属性
     'globalproperty': {
@@ -55,20 +48,20 @@ const aplusConfig = {
     // 设置每个页面的page_name
     pageConfig: {
       'pages/index/index': {
-  		  'pageName': 'home_page'
-  		},
+        'pageName': 'home_page'
+      },
       'pages/vt/vtdemo1': {
         'pageName': 'vtdemo1'
       },
-  		'pages/click/click': {
-  		  'pageName': 'clickevent_page'
-  		},
-  		'pages/pv/pv': {
-  			'pageName': 'manpv_page'
-  		},
-  		'pages/setting/index': {
-  			'pageName': 'setting_page'
-  		},
+      'pages/click/click': {
+        'pageName': 'clickevent_page'
+      },
+      'pages/pv/pv': {
+        'pageName': 'manpv_page'
+      },
+      'pages/setting/index': {
+        'pageName': 'setting_page'
+      },
       'pages/exposure/swiper': {
         'pageName': 'exp_page'
       },
@@ -91,35 +84,36 @@ const aplusConfig = {
   },
 };
 
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig);
+const { initQTSDK } = require('./utils/qt_mini.umd.js');
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，页面直接使用 wx.qt / wx.qt_queue
+initQTSDK(aplusConfig);
 
 App({
-    aplus,
-    onLaunch(options) {
-        console.log('App.onLaunch --> ', options)
-    },
-    onShow(options) {
-        console.log('App.onShow --> ', options)
-        const pages = getCurrentPages() || []
-        const currentPage = pages[pages.length - 1]
-        if (currentPage) console.log('currentPage --> ', currentPage.pageId)
-    },
-    onHide() {
-        console.log('App.onHide --> ')
-        const pages = getCurrentPages() || []
-        const currentPage = pages[pages.length - 1]
-        if (currentPage) console.log('currentPage --> ', currentPage.pageId)
-    },
-    onError(err) {
-        console.log('App.onError --> ', err)
-    },
-    onPageNotFound(options) {
-        console.log('App.onPageNotFound --> ', options)
-    },
-    onUnhandledRejection(options) {
-        console.log('App.onUnhandledRejection --> ', options)
-    },
-    onThemeChange(options) {
-        console.log('App.onThemeChange --> ', options)
-    },
+  onLaunch(options) {
+    console.log('App.onLaunch --> ', options)
+  },
+  onShow(options) {
+    console.log('App.onShow --> ', options)
+    const pages = getCurrentPages() || []
+    const currentPage = pages[pages.length - 1]
+    if (currentPage) console.log('currentPage --> ', currentPage.pageId)
+  },
+  onHide() {
+    console.log('App.onHide --> ')
+    const pages = getCurrentPages() || []
+    const currentPage = pages[pages.length - 1]
+    if (currentPage) console.log('currentPage --> ', currentPage.pageId)
+  },
+  onError(err) {
+    console.log('App.onError --> ', err)
+  },
+  onPageNotFound(options) {
+    console.log('App.onPageNotFound --> ', options)
+  },
+  onUnhandledRejection(options) {
+    console.log('App.onUnhandledRejection --> ', options)
+  },
+  onThemeChange(options) {
+    console.log('App.onThemeChange --> ', options)
+  },
 })

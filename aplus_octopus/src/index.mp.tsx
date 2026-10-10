@@ -14,10 +14,8 @@ import Setting from './pages/setting/setting';
 const aplusConfig = {
   metaInfo: {
     '_anony_id': 'test_id_111',
-    'appId': 'wx9e13f4e9923236ab', //和project.config.json里的appid保持一致，必填
-    // 'aplus-waiting':'MAN', //关闭自动PV,
     'DEBUG': true,  // 埋点调试使用
-    'aplus-rhost-v': 'log-api.aplus.emas-poc.com', //pv日志发送去向，填域名，必填
+    'trackDomain': '您的收数域名', //pv日志发送去向，填域名，必填
 
     // 全局属性
     'globalproperty': {
@@ -85,10 +83,12 @@ const aplusConfig = {
   }
 }
 
-const aplus = require('./utils/aplus_mini_cloud_um.js')(aplusConfig);
+const { initQTSDK } = require('./utils/qt_mini.umd.js');
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，封装层直接使用 my.qt / my.qt_queue
+initQTSDK(aplusConfig);
 
 class Index extends React.Component {
-  
+
   constructor(props: any) {
     super(props);
   }
@@ -99,7 +99,7 @@ class Index extends React.Component {
   // onShareAppMessage(...args) {
   //   console.log('==> args', args)
   // }
-  
+
   render() {
 
     const { children }: any = this.props;
@@ -117,7 +117,7 @@ class Index extends React.Component {
           <Route name="Setting" component={Setting} />
         </Router>
         {children}
-        </>
+      </>
     )
   }
 }

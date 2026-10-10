@@ -17,19 +17,10 @@ const random = getRandom(1, 1000);
 
 const aplusConfig = {
   metaInfo: {
-    "appKey": trackerInfo.appKey || "56hdbh8rtp9ps08l4bdpai9p",
-    "appInfoId": trackerInfo.appInfoId || "92522112133683",
-    // "aplus-rhost-v": trackerInfo.aplusRhostV || "log-api.aplus.emas-poc.com", //日志发送去向，填域名，必填
-    // 'aplus-rhost-v': 'quickaplus-web-api-cn-zhangjiakou.aliyun.com',
-    'aplus-rhost-v': 'log-api.aplus.emas-poc.com',
-    // "aplus-vt-cfg-url":
-    //   trackerInfo.aplusVtCfgUrl ||
-    //   "https://alidt.alicdn.com/alilog/vt/miniapp/skuu0fdm4ksl236ladytzi1o.json", // 已发布的配置地址
-    // "aplus-api-host": trackerInfo.aplusApiHost || 'pre.aplus.emas-poc.com', // 采集管理系统域名，用于可视化埋点验证
+    "appKey": trackerInfo.appKey,
+    'trackDomain': '您的收数域名',
     "_anony_id": "testOpenId" + random,
     '_user_id': 'testUserId_' + random,
-    // "appId": "wx9e13f4e9923236ab", //和project.config.json里的appid保持一致，必填
-    // 'aplus-waiting':'MAN', //关闭自动PV,
     "DEBUG": true, // 埋点调试使用
     // 全局属性
     'globalproperty': {
@@ -141,11 +132,11 @@ const aplusConfig = {
 };
 
 
-const aplus = require('./utils/aplus_mini_cloud_um')(aplusConfig)
+const { initQTSDK } = require('./utils/qt_mini.umd.js')
+// initQTSDK 内部已将 qt / qt_queue 挂载到平台全局对象上，封装层直接从平台全局对象获取
+initQTSDK(aplusConfig)
 
 class App extends Component {
-
-  aplus = aplus; //将aplus注入到Taro.getApp()内
 
   componentDidMount() {}
 

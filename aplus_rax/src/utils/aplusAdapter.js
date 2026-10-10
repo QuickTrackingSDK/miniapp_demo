@@ -1,18 +1,29 @@
 import { isWeb } from '@uni/env';
-import aplus from './aplus';
+// 触发 QT SDK 初始化（内部已将 qt / qt_queue 挂载到平台全局对象上）
+import './aplus';
+
+// 小程序端 QT SDK 将 qt / qt_queue 挂载在平台全局对象上，探测顺序与 SDK getPlatformContext 一致
+const getMpGlobal = () => {
+  if (typeof my !== 'undefined') return my;
+  if (typeof tt !== 'undefined') return tt;
+  if (typeof swan !== 'undefined') return swan;
+  if (typeof wx !== 'undefined') return wx;
+  if (typeof jd !== 'undefined') return jd;
+  return {};
+};
 
 const sendPV = (params) => {
   console.log('yz-----sendPV');
   if (isWeb) {
-    const {aplus_queue} = window;
-    aplus_queue.push({
-      action: 'aplus.sendPV',
-      arguments: [{is_auto: false}, {...params}]
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.sendPV',
+      arguments: [{ is_auto: false }, { ...params }]
     })
   } else {
-    aplus.aplus_queue.push({
-      action: 'aplus.sendPV',
-      arguments: [{is_auto: false}, {...params}]
+    getMpGlobal().qt_queue.push({
+      action: 'qt.sendPV',
+      arguments: [{ is_auto: false }, { ...params }]
     })
   }
 };
@@ -20,33 +31,18 @@ const sendPV = (params) => {
 const sendEvent = (eventid, params, eventtype = 'CLK') => {
   console.log('yz-----sendEvent');
   if (isWeb) {
-    const {aplus_queue} = window;
-    aplus_queue.push({
-      action: 'aplus.record',
-      arguments: [eventid, eventtype, {...params}]
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.record',
+      arguments: [eventid, eventtype, { ...params }]
     })
   } else {
-    aplus.aplus_queue.push({
-      action: 'aplus.record',
-      arguments: [eventid, eventtype, {...params}]
+    getMpGlobal().qt_queue.push({
+      action: 'qt.record',
+      arguments: [eventid, eventtype, { ...params }]
     })
   }
 };
-
-const onAplusClk = (e) => {
-  console.log(e, "eeee");
-  const aplus_queue = aplus.aplus_queue;
-  const cp = getCurrentPages();
-  const cpl = cp.length;
-  aplus_queue.push({
-    action: 'aplus.aplus_pubsub.publish',
-    arguments: ['onAplusClk', {
-      status: 'ready',
-      event: e,
-      context: cp[cpl - 1]
-    }]
-  })
-}
 
 const sendUserInfo = (params) => {
   sendEvent('$$_user_profile', params, 'OTHER');
@@ -55,14 +51,14 @@ const sendUserInfo = (params) => {
 const setUserId = (userid) => {
   console.log('yz-----userid', userid);
   if (isWeb) {
-    const {aplus_queue} = window;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   } else {
-    aplus.aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    getMpGlobal().qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   }
@@ -70,19 +66,18 @@ const setUserId = (userid) => {
 
 const registerGlobalProperties = (params) => {
   if (isWeb) {
-    const { aplus_queue } = window;
+    const { qt_queue } = window;
     /**
      * @example:
-     *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
      * @params 一级平铺自定义全局属性键值对，不支持嵌套
      */
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', { ...params }]
     });
   } else {
-    aplus.aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    getMpGlobal().qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', { ...params }]
     });
   }
@@ -90,14 +85,14 @@ const registerGlobalProperties = (params) => {
 
 const appendGlobalProperties = (params) => {
   if (isWeb) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.appendMetaInfo',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.appendMetaInfo',
       arguments: ['globalproperty', { ...params }]
     })
   } else {
-    aplus.aplus_queue.push({
-      action: 'aplus.appendMetaInfo',
+    getMpGlobal().qt_queue.push({
+      action: 'qt.appendMetaInfo',
       arguments: ['globalproperty', { ...params }]
     })
   }
@@ -105,27 +100,42 @@ const appendGlobalProperties = (params) => {
 
 const getGlobalProperties = () => {
   if (isWeb) {
-    const { aplus } = window;
-    return aplus.getMetaInfo('globalproperty');
+    const { qt } = window;
+    return qt.getMetaInfo('globalproperty');
   } else {
-    return aplus.aplus.getMetaInfo('globalproperty');
+    return getMpGlobal().qt.getMetaInfo('globalproperty');
   }
 };
 
 const clearGlobalProperties = () => {
   if (isWeb) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', {}]
     })
   } else {
-    aplus.aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    getMpGlobal().qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', {}]
     })
   }
 };
+
+const onAplusClk = (e) => {
+  console.log(e, "eeee");
+  const qt_queue = getMpGlobal().qt_queue;
+  const cp = getCurrentPages();
+  const cpl = cp.length;
+  qt_queue.push({
+    action: 'qt.qt_pubsub.publish',
+    arguments: ['onAplusClk', {
+      status: 'ready',
+      event: e,
+      context: cp[cpl - 1]
+    }]
+  })
+}
 
 export default {
   sendPV,
