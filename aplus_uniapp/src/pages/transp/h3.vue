@@ -85,18 +85,18 @@ export default {
 	methods: {
 		sendPv: function () {
 			// #ifdef H5
-			aplus_queue.push({
-				action: 'aplus.aplus_pubsub.subscribe',
+			qt_queue.push({
+				action: 'qt.qt_pubsub.subscribe',
 				arguments: [
-					'aplusReady',
+					'qtReady',
 					function (status) {
 						if (status === 'complete') {
-							window.aplus.updatePageProperties('h3_page', { cusp_h3_p: 'h3页面浏览的事件属性' });
+							window.qt.updatePageProperties('h3_page', { cusp_h3_p: 'h3页面浏览的事件属性' });
 
-							console.log('h3的页面属性：', window.aplus.getPageProperties('h3_page'));
+							console.log('h3的页面属性：', window.qt.getPageProperties('h3_page'));
 
-							console.log("事件属性 cusp_h3_p ==", window.aplus.getPageProperty("h3_page", "cusp_h3_p", "cusp"));
-							console.log("透传事件属性 transp_from_h2 ==", window.aplus.getPageProperty("h3_page", "transp_from_h2",
+							console.log("事件属性 cusp_h3_p ==", window.qt.getPageProperty("h3_page", "cusp_h3_p", "cusp"));
+							console.log("透传事件属性 transp_from_h2 ==", window.qt.getPageProperty("h3_page", "transp_from_h2",
 								"transp"));
 						}
 					}
@@ -113,8 +113,8 @@ export default {
 			})
 		},
 		onPageShow() {
-			console.log("aplus == ", window.aplus)
-			window.aplus.onPageShow();
+			console.log("qt == ", window.qt)
+			window.qt.onPageShow();
 		},
 		navigateToApp() {
 			console.log("JS 桥接")
@@ -133,7 +133,7 @@ export default {
 			}
 		},
 		navigateToH2() {
-			window.aplus.updateNextPageProperties({
+			window.qt.updateNextPageProperties({
 				transp_from_h3: 'h3给h2的透传属性'
 			})
 

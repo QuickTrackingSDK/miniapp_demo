@@ -15,9 +15,9 @@ const getMpGlobal = () => {
 const sendPV = (params) => {
   console.log('yz-----sendPV');
   if (isWeb) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.sendPV',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.sendPV',
       arguments: [{ is_auto: false }, { ...params }]
     })
   } else {
@@ -31,9 +31,9 @@ const sendPV = (params) => {
 const sendEvent = (eventid, params, eventtype = 'CLK') => {
   console.log('yz-----sendEvent');
   if (isWeb) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.record',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.record',
       arguments: [eventid, eventtype, { ...params }]
     })
   } else {
@@ -44,21 +44,6 @@ const sendEvent = (eventid, params, eventtype = 'CLK') => {
   }
 };
 
-const onAplusClk = (e) => {
-  console.log(e, "eeee");
-  const qt_queue = getMpGlobal().qt_queue;
-  const cp = getCurrentPages();
-  const cpl = cp.length;
-  qt_queue.push({
-    action: 'qt.qt_pubsub.publish',
-    arguments: ['onAplusClk', {
-      status: 'ready',
-      event: e,
-      context: cp[cpl - 1]
-    }]
-  })
-}
-
 const sendUserInfo = (params) => {
   sendEvent('$$_user_profile', params, 'OTHER');
 };
@@ -66,9 +51,9 @@ const sendUserInfo = (params) => {
 const setUserId = (userid) => {
   console.log('yz-----userid', userid);
   if (isWeb) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   } else {
@@ -81,14 +66,13 @@ const setUserId = (userid) => {
 
 const registerGlobalProperties = (params) => {
   if (isWeb) {
-    const { aplus_queue } = window;
+    const { qt_queue } = window;
     /**
      * @example:
-     *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
      * @params 一级平铺自定义全局属性键值对，不支持嵌套
      */
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', { ...params }]
     });
   } else {
@@ -101,9 +85,9 @@ const registerGlobalProperties = (params) => {
 
 const appendGlobalProperties = (params) => {
   if (isWeb) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.appendMetaInfo',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.appendMetaInfo',
       arguments: ['globalproperty', { ...params }]
     })
   } else {
@@ -116,8 +100,8 @@ const appendGlobalProperties = (params) => {
 
 const getGlobalProperties = () => {
   if (isWeb) {
-    const { aplus } = window;
-    return aplus.getMetaInfo('globalproperty');
+    const { qt } = window;
+    return qt.getMetaInfo('globalproperty');
   } else {
     return getMpGlobal().qt.getMetaInfo('globalproperty');
   }
@@ -125,9 +109,9 @@ const getGlobalProperties = () => {
 
 const clearGlobalProperties = () => {
   if (isWeb) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', {}]
     })
   } else {
@@ -146,6 +130,5 @@ export default {
   registerGlobalProperties,
   appendGlobalProperties,
   getGlobalProperties,
-  clearGlobalProperties,
-  onAplusClk
+  clearGlobalProperties
 };

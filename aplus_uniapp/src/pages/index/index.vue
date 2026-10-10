@@ -121,24 +121,24 @@ const browser = {
 export default {
 	onShow() {
 		// #ifdef H5
-		aplus_queue.push({
-			action: 'aplus.aplus_pubsub.subscribe',
+		qt_queue.push({
+			action: 'qt.qt_pubsub.subscribe',
 			arguments: [
-				'aplusReady',
+				'qtReady',
 				function (status) {
 					if (status === 'complete') {
-						window.aplus.updatePageProperties(
+						window.qt.updatePageProperties(
 							"h1_page",
 							{
 								cusp_h1_p: 'h1的事件属性',
 							}
 						);
 
-						console.log('h1页面属性：', window.aplus.getPageProperties('h1_page'));
-						console.log("事件属性 cusp_h1_p ==", window.aplus.getPageProperty("h1_page", "cusp_h1_p",
+						console.log('h1页面属性：', window.qt.getPageProperties('h1_page'));
+						console.log("事件属性 cusp_h1_p ==", window.qt.getPageProperty("h1_page", "cusp_h1_p",
 							"cusp"));
-						console.log("事件属性 transp_from_h2 ==", window.aplus.getPageProperty("h1_page", "transp_from_h2", "transp"));
-						window.aplus.sendPV({
+						console.log("事件属性 transp_from_h2 ==", window.qt.getPageProperty("h1_page", "transp_from_h2", "transp"));
+						window.qt.sendPV({
 							is_auto: false
 						}, {});
 					}
@@ -147,17 +147,17 @@ export default {
 		})
 
 		// 同步引入写法
-		// aplus.updatePageProperties({
+		// qt.updatePageProperties({
 		// 	properties: {
 		// 		cusp_h1_p: '首页的事件属性',
 		// 	},
 		// 	page_name: "h1_page",
 		// });
 
-		// console.log('首页的页面属性：', aplus.getPageProperties('h1_page'));
-		// console.log("事件属性 cusp_h1_p ==", aplus.getPageProperty("h1_page", "cusp_h1_p", "cusp"));
-		// console.log("事件属性 transp_from_page1 ==", aplus.getPageProperty("h1_page", "transp_from_page1", "transp"));
-		// aplus.sendPV({is_auto: false}, {page_name: "h1_page"});
+		// console.log('首页的页面属性：', qt.getPageProperties('h1_page'));
+		// console.log("事件属性 cusp_h1_p ==", qt.getPageProperty("h1_page", "cusp_h1_p", "cusp"));
+		// console.log("事件属性 transp_from_page1 ==", qt.getPageProperty("h1_page", "transp_from_page1", "transp"));
+		// qt.sendPV({is_auto: false}, {page_name: "h1_page"});
 		// #endif
 	},
 
@@ -278,7 +278,7 @@ export default {
 			})
 		},
 		navigateToClick() {
-			window.aplus.updateNextPageProperties({
+			window.qt.updateNextPageProperties({
 				"transp_from_h1": "h1给h2的透传属性",
 			});
 			uni.navigateTo({
@@ -311,7 +311,7 @@ export default {
 			})
 		},
 		navigateToH2WithHole() {
-			window.aplus.updateNextPageProperties({
+			window.qt.updateNextPageProperties({
 				"transp_from_h1": "h1给h2的透传属性",
 			});
 

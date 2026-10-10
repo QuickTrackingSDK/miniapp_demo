@@ -14,12 +14,9 @@ const random = getRandom(1, 1000);
 const aplusConfig = {
   metaInfo: {
     "appKey": trackerInfo.appKey,
-    "appInfoId": trackerInfo.appInfoId,
     "trackDomain": trackerInfo.aplusRhostV, //日志发送去向，填域名，必填
     "_anony_id": "testOpenId" + random,
     '_user_id': 'testUserId_' + random,
-    // "appId": "您的appid", //和project.config.json里的appid保持一致 ，必填
-    // 'aplus-waiting':'MAN', //关闭自动PV,
     "DEBUG": true, // 埋点调试使用
     // 全局属性
     'globalproperty': {

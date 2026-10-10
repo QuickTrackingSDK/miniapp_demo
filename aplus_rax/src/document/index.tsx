@@ -11,39 +11,34 @@ function Document(props) {
         <title>{'props.title'}</title>
         <Style />
         <script type="text/javascript" dangerouslySetInnerHTML={{__html: `
-          (function(w, d, s, q, i) {
+          (function(w, d, s, q) {
             w[q] = w[q] || [];
             var f = d.getElementsByTagName(s)[0],j = d.createElement(s);
             j.async = true;
-            j.id = 'beacon-aplus';
-            j.src = 'https://d.alicdn.com/alilog/mlog/aplus/' + i + '.js';
+            j.id = 'beacon-qt';
+            j.src = 'https://g.alicdn.com/QTSDK/qt-sdk-javascript/2.5.5/qt_web.umd.js';
             f.parentNode.insertBefore(j, f);
-           })(window, document, 'script', 'aplus_queue', '203520406');
+           })(window, document, 'script', 'qt_queue');
 
           //集成应用的appKey
-          aplus_queue.push({
-            action: 'aplus.setMetaInfo',
-            arguments: ['appKey', 'aTestAppkey']
+          qt_queue.push({
+            action: 'qt.setMetaInfo',
+            arguments: ['appKey', '您的appKey']
           })
           //如果是私有云部署还需要在上面那段JS后面紧接着添加日志域名埋点
           //通常私有云日志服务端域名类似于：quickaplus-web-api.xxx.com.cn, 具体域名要找交付同学要
-          aplus_queue.push({
-            action: 'aplus.setMetaInfo',
+          qt_queue.push({
+            action: 'qt.setMetaInfo',
             arguments: ['trackDomain', '您的收数域名']
           });
           //开启调试模式
-          aplus_queue.push({
-            action: 'aplus.setMetaInfo',
+          qt_queue.push({
+            action: 'qt.setMetaInfo',
             arguments: ['DEBUG', true]
           });
-          // 设置aplus-waiting = MAN, 关闭自动pv上报
-          // aplus_queue.push({
-          //   action: 'aplus.setMetaInfo',
-          //   arguments: ['aplus-waiting', 'MAN']
-          // });
 
-          aplus_queue.push({
-            action: 'aplus.setMetaInfo',
+          qt_queue.push({
+            action: 'qt.setMetaInfo',
             arguments: ['aplus-auto-exp', [{
               'cssSelector': '.banner_item',
               'logkey': 'test_auto_exp_banner',
@@ -55,8 +50,8 @@ function Document(props) {
             }], ]
           })
 
-          aplus_queue.push({
-            action: 'aplus.setMetaInfo',
+          qt_queue.push({
+            action: 'qt.setMetaInfo',
             arguments: ['aplus-auto-clk', [{
               'cssSelector': '.auto_clk',
               'logkey': 'test_auto_clk',
@@ -64,13 +59,13 @@ function Document(props) {
             }]]
           })
 
-          aplus_queue.push({
-            action: 'aplus.setMetaInfo',
+          qt_queue.push({
+            action: 'qt.setMetaInfo',
             arguments: ['_user_id', 'testid']
           });
 
-          aplus_queue.push({
-            action: 'aplus.setMetaInfo',
+          qt_queue.push({
+            action: 'qt.setMetaInfo',
             arguments: ['pageConfig', {
               '/': {
                 pageName: 'home_page_test'

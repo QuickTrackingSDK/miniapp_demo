@@ -21,7 +21,7 @@
 import UmengSDK from '../../../utils/umengAdaptor'
 export default {
     onShow() {
-        window.aplus.updatePageProperties('click_page', {
+        window.qt.updatePageProperties('click_page', {
             click_page_cusp1: 1
         });
 

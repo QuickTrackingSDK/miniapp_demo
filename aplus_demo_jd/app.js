@@ -18,7 +18,6 @@ const aplusConfig = {
   metaInfo: {
     'appKey': trackerInfo.appKey,
     //必填
-    'appInfoId': trackerInfo.appInfoId || 'anAppInfoId',
     'trackDomain': trackerInfo.aplusRhostV,
     //必填 收数域名
     'DEBUG': true,

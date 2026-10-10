@@ -3,9 +3,9 @@ const aplusMini = require('./aplus');
 console.log(window, 'window')
 const sendPV = (params) => {
   if (window) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.sendPV',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.sendPV',
       arguments: [{ is_auto: false }, { ...params }]
     })
   } else {
@@ -19,9 +19,9 @@ const sendPV = (params) => {
 
 const sendEvent = (eventid, params, eventtype = 'CLK') => {
   if (window) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.record',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.record',
       arguments: [eventid, eventtype, { ...params }]
     })
   } else {
@@ -56,9 +56,9 @@ const setUserId = (userid) => {
   if (window) {
     console.log('yz-----userid', userid);
 
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', userid]
     })
   } else {
@@ -72,14 +72,13 @@ const setUserId = (userid) => {
 
 const registerGlobalProperties = (params) => {
   if (window) {
-    const { aplus_queue } = window;
+    const { qt_queue } = window;
     /**
      * @example:
-     *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
      * @params 一级平铺自定义全局属性键值对，不支持嵌套
      */
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', { ...params }]
     });
   } else {
@@ -97,10 +96,10 @@ const registerGlobalProperties = (params) => {
 };
 
 const appendGlobalProperties = (params) => {
-  if (window.aplus_queue) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.appendMetaInfo',
+  if (window.qt_queue) {
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.appendMetaInfo',
       arguments: ['globalproperty', { ...params }]
     })
   } else {
@@ -113,9 +112,9 @@ const appendGlobalProperties = (params) => {
 };
 
 const getGlobalProperties = () => {
-  if (window.aplus_queue) {
-    const { aplus } = window;
-    return aplus.getMetaInfo('globalproperty');
+  if (window.qt_queue) {
+    const { qt } = window;
+    return qt.getMetaInfo('globalproperty');
   } else {
     const qt = wx.qt;
     return qt.getMetaInfo('globalproperty');
@@ -123,10 +122,10 @@ const getGlobalProperties = () => {
 };
 
 const clearGlobalProperties = () => {
-  if (window.aplus_queue) {
-    const { aplus_queue } = window;
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+  if (window.qt_queue) {
+    const { qt_queue } = window;
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', {}]
     })
   } else {

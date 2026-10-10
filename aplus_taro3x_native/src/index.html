@@ -18,53 +18,49 @@
       return min + Math.floor(Math.random() * (max - min + 1));
     };
     const random = getRandom(1, 1000);
-    (function (w, d, s, q, i) {
+    (function (w, d, s, q) {
       w[q] = w[q] || [];
       var f = d.getElementsByTagName(s)[0], j = d.createElement(s);
       j.async = true;
-      j.id = 'beacon-aplus';
-      j.src = 'https://d.alicdn.com/alilog/mlog/aplus/' + i + '.js';
+      j.id = 'beacon-qt';
+      j.src = 'https://g.alicdn.com/QTSDK/qt-sdk-javascript/2.5.5/qt_web.umd.js';
       f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'aplus_queue', 203607293);
+    })(window, document, 'script', 'qt_queue');
 
     //集成应用的appKey
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
-      arguments: ['appKey', 'your_appKey']
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
+      arguments: ['appKey', '您的appKey']
     });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
-      arguments: ['appInfoId', '您的appInfoId']
-    });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['trackDomain', '您的收数域名']
     });
     // 可视化配置
-    // aplus_queue.push({
-    //   action: 'aplus.setMetaInfo',
+    // qt_queue.push({
+    //   action: 'qt.setMetaInfo',
     // });
-    // aplus_queue.push({
-    //   action: 'aplus.setMetaInfo',
+    // qt_queue.push({
+    //   action: 'qt.setMetaInfo',
     // });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_anony_id', "testOpenId_" + random]
     });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['_user_id', "testUserId_" + random]
     });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['DEBUG', true]
     });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['globalproperty', { from: 'taro_h5' }]
     });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['aplus-auto-exp', [
         {
           cssSelector: ".banner-item", //sdk会自动处理为： .banner-item
@@ -83,8 +79,8 @@
         },
       ]]
     });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['aplus-auto-clk', [
         {
           cssSelector: ".auto-click",
@@ -93,8 +89,8 @@
         },
       ]]
     });
-    aplus_queue.push({
-      action: 'aplus.setMetaInfo',
+    qt_queue.push({
+      action: 'qt.setMetaInfo',
       arguments: ['pageConfig', {
         'pages/index/index': {
           'pageName': 'home_page'

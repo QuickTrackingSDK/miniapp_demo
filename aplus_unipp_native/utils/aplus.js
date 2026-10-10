@@ -5,7 +5,6 @@ const aplusConfig = {
 		'appKey': '您的appKey',
 		'trackDomain': '采集日志上报域名，必填',
 		'DEBUG': true,
-		'aplus-waiting': 'MAN', //关闭自动pv
 		_anony_id: 'testOpenId', //必填
 		'globalproperty': {
 			a: undefined,

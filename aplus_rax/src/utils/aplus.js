@@ -1,5 +1,5 @@
 /* eslint-disable */
-var aplus_mini = require('./aplus_mini_cloud_um'); // 1.x 版本 sdk（已废弃，当前使用下方 qt_mini）
+// var aplus_mini = require('./aplus_mini_cloud_um'); // 1.x 版本 sdk（已废弃，当前使用下方 qt_mini）
 import { initQTSDK } from './qt_mini.umd.js';
 import { storage } from '@uni/apis';
 
@@ -19,7 +19,6 @@ const aplusConfig = {
   metaInfo: {
     // POC环境
     'appKey': trackerInfo.appKey,
-    'appInfoId': trackerInfo.appInfoId,
     'trackDomain': trackerInfo.aplusRhostV,
     'DEBUG': true,
     '_anony_id': 'testOpenId_' + random, // 'testOpenId', //必填

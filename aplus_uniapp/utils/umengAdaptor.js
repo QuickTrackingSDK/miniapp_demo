@@ -24,9 +24,9 @@ export default {
 		// #endif
 
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.sendPV',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.sendPV',
 			arguments: [
 				{ is_auto: false },
 				{ ...params }
@@ -45,9 +45,9 @@ export default {
 		// #endif
 
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.record',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.record',
 			arguments: [eventId, eventType, { ...params }, method]
 		})
 		// #endif
@@ -77,14 +77,13 @@ export default {
 		// #endif
 
 		// #ifdef H5
-		const { aplus_queue } = window;
+		const { qt_queue } = window;
 		/**
 		 * @example:
-		 *  aplus_queue.push({action: 'aplus.setMetaInfo', arguments: ['globalproperty', { a: 1, b: '2', c: null, d: undefined, e: '' }]});
 		 * @params 一级平铺自定义全局属性键值对，不支持嵌套
 		 */
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		});
 		// #endif
@@ -105,9 +104,9 @@ export default {
 	// #ifdef MP | H5
 	appendGlobalProperties: function (params) {
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.appendMetaInfo',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.appendMetaInfo',
 			arguments: ['globalproperty', { ...params }]
 		})
 		// #endif
@@ -127,8 +126,8 @@ export default {
 		// #endif
 
 		// #ifdef H5
-		const { aplus } = window;
-		return aplus.getMetaInfo('globalproperty');
+		const { qt } = window;
+		return qt.getMetaInfo('globalproperty');
 		// #endif
 
 		// #ifdef MP
@@ -143,9 +142,9 @@ export default {
 		// #endif
 
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['globalproperty', {}]
 		})
 		// #endif
@@ -176,9 +175,9 @@ export default {
 		// #endif
 
 		// #ifdef H5
-		const { aplus_queue } = window;
-		aplus_queue.push({
-			action: 'aplus.setMetaInfo',
+		const { qt_queue } = window;
+		qt_queue.push({
+			action: 'qt.setMetaInfo',
 			arguments: ['_user_id', puid]
 		})
 		// #endif

@@ -15,12 +15,10 @@ const random = getRandom(1, 1000);
 const aplusConfig = {
   metaInfo: {
     'appKey': trackerInfo.appKey,
-    'appInfoId': trackerInfo.appInfoId,
     'trackDomain': trackerInfo.aplusRhostV,
 
 
     'DEBUG': true,
-    // 'aplus-waiting': 'MAN', //关闭自动pv
     '_anony_id': 'testOpenId_' + random, // 'testOpenId', //必填
     'globalproperty': {
       from: 'uniapp'
